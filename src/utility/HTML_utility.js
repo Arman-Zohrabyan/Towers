@@ -6,4 +6,4 @@ export default {
     range.deleteContents();
     el.appendChild(range.createContextualFragment(html));
   }
-}
+};

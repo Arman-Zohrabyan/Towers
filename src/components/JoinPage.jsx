@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
+/**
+ * Join Page.
+ */
 
-import scripts from '../utility/canvas-scripts';
-import htmlUtility from '../utility/HTML_utility';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 
 class JoinPage extends Component {
@@ -11,29 +13,44 @@ class JoinPage extends Component {
 
     this.state = {
       nickname: '',
-      isNicknameCorrect: false
+      isNicknameCorrect: false,
+      dangerous: false
     };
   }
 
+  /**
+   * Nickname send function
+   */
   handleOnClick = (e) => {
     e.preventDefault();
-    const { history } = this.props; 
+    const { history } = this.props;
+    const { isNicknameCorrect } = this.state;
 
-    setTimeout(() => {
+    if (isNicknameCorrect) {
       history.push('/boards');
-    }, 200);
+    } else {
+      this.setState({ dangerous: true });
+    }
   }
 
-  onChangeHandle = (e) => {
+  /**
+   * Input value change function.
+   */
+  handleOnChange = (e) => {
     const { name, value } = e.target;
+
     const isNicknameCorrect = (value.trim().length > 2);
     this.setState({
       isNicknameCorrect,
+      dangerous: false,
       [name]: value
     });
   }
 
   render() {
+    const { dangerous, isNicknameCorrect, nickname } = this.state;
+    const dangerousClass = dangerous ? 'joinContent-container__inputWrapper__icon2__dangerous' : '';
+
     return (
       <Fragment>
         <div className='joinContent'>
@@ -48,27 +65,41 @@ class JoinPage extends Component {
             <div className='marker2' />
           </div>
           <div className='joinContent-container'>
-            <input
-              type='text'
-              id='canvas-input'
-              placeholder='Write Your Nickname'
-              name='nickname'
-              autoComplete='off'
-            />
+            <span className='joinContent-container__inputWrapper'>
+              <input
+                onChange={this.handleOnChange}
+                value={nickname}
+                type='text'
+                className='joinContent-container__inputWrapper__input'
+                placeholder='Write Your Nickname'
+                name='nickname'
+                autoComplete='off'
+              />
+              {isNicknameCorrect ?
+                <i className='fas fa-check joinContent-container__inputWrapper__icon1' /> :
+                <i className={`fas fa-times joinContent-container__inputWrapper__icon2 ${dangerousClass}`} />
+              }
+            </span>
             <button
               id='canvas-button'
               onClick={this.handleOnClick}
             >
-                          Continue
+              Continue
             </button>
           </div>
         </div>
-
-        <div ref={htmlUtility.setDangerousHtml.bind(null, scripts.canvasButton + scripts.canvasInput)} />
       </Fragment>
     );
   }
 }
+
+
+JoinPage.propTypes = {
+  /**
+   * browser history
+   */
+  history: PropTypes.object
+};
 
 
 export default withRouter(JoinPage);
