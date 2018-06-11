@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Arman Zohrabyan <arman.zohrabyan.96@gmail.com> (https://github.com/Arman-Zohrabyan)",
   "scripts": {
+    "fix": "eslint --fix ./ --ext .jsx --ext .js",
     "nodemon": "PORT=4000 nodemon app.js",
     "webpack": "webpack --watch"
   },
@@ -17,17 +18,24 @@
     "express": "^4.16.3",
     "nodemon": "^1.17.5",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.9.1",
     "moment": "^2.22.2",
     "node-sass": "^4.9.0",
+    "prop-types": "^15.6.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "3.11.0"

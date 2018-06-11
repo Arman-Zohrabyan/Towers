@@ -1,6 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
@@ -19,7 +18,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015','react'],
+          presets: ['es2015', 'react'],
           plugins: ['transform-class-properties']
         }
       },
@@ -30,11 +29,11 @@ module.exports = {
           {
             loader: require.resolve('css-loader'),
             options: {
-              importLoaders: 1,
-            },
+              importLoaders: 1
+            }
           },
           {
-            loader: 'sass-loader',
+            loader: 'sass-loader'
           }
         ]
       }
@@ -42,11 +41,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new CopyWebpackPlugin(['public']),
+    new CopyWebpackPlugin(['public'])
     // new webpack.optimize.UglifyJsPlugin({
     //   compressor: {
     //     warnings: false
     //   }
     // })
-  ],
+  ]
 };
