@@ -11,21 +11,14 @@ app.use(express.static('./dist/'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-
-app.use('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
-
-
-
-
-
 
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, function(err) {
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
     return;

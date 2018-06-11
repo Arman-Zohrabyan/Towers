@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 body {
@@ -16,32 +17,15 @@ body {
    overflow: auto !important;
 }
 
-.video-container {
-    z-index: 0;
+#main {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-
-    &__video {
-        width: 100%;
-        height: 100%;
-        float: left;
-        object-fit: cover;
-    }
+    background-image: url('/images/background.png');
+    background-size: auto 100%;
 }
-
-
-.start-container {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
 
 
 .preloader {
@@ -176,6 +160,21 @@ body {
 
 
 
+
+
+
+.toggleScreenButton {
+  width: 30px;
+  height: 30px;
+  background-image: url('/images/fullScreen.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+  position: fixed;
+  right: 10px;
+  z-index: 100;
+  top: 10px;
+}
 
 
 
