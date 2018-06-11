@@ -8,8 +8,8 @@ import './style.scss';
 
 import Layout from './components/Layout.jsx';
 
-import JoinPage from './components/JoinPage.jsx';
-import BoardsPage from './components/BoardsPage.jsx';
+import JoinPage from './components/JoinPage/JoinPage.jsx';
+import BoardsPage from './components/BoardsPage/BoardsPage.jsx';
 
 
 render(
