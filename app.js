@@ -11,6 +11,12 @@ app.use(express.static('./dist/'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+
+const api = require('./server/routes/api');
+app.use('/api', api);
+
+
+
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
