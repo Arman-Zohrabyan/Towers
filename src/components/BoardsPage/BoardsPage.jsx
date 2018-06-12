@@ -25,24 +25,43 @@ class BoardsPage extends Component {
             </div>
           </div>
 
-          <Room createdBy='Valodik' status={0} iAmIn={false}
+          <Room
+            createdBy='Valodik'
+            status={0}
+            iAmIn={false}
             onRoom={1}
           />
-          <Room createdBy='ME' status={1} iAmIn
+          <Room
+            createdBy='ME'
+            status={1}
+            iAmIn
             onRoom={2}
           />
-          <Room createdBy='Valodik' status={1} iAmIn
+          <Room
+            createdBy='Valodik'
+            status={1}
+            iAmIn
             onRoom={2}
           />
-          <Room createdBy='Valodik' status={1} iAmIn={false}
+          <Room
+            createdBy='Valodik'
+            status={1}
+            iAmIn={false}
             onRoom={2}
           />
-          <Room createdBy='Valodik' status={0} iAmIn
+          <Room
+            createdBy='Valodik'
+            status={0}
+            iAmIn
             onRoom={1}
           />
-          <Room createdBy='Valodik' status={2} iAmIn={false}
+          <Room
+            createdBy='Valodik'
+            status={2}
+            iAmIn={false}
             onRoom={5}
           />
+
         </div>
       </div>
     );

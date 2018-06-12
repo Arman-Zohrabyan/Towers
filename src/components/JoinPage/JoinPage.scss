@@ -2,6 +2,7 @@ $color-amber-1: rgba(255, 179, 0 ,.5);
 $color-orange-1: rgba(239, 108, 0, 0.75);
 $color-teal-1: rgb(0,105,92);
 $color-dangerous-1: #FF5722;
+$color-green-1: #2E7D32;
 
 .joinContent {
     position: relative;
@@ -163,7 +164,7 @@ $color-dangerous-1: #FF5722;
           }
 
           &__input:-ms-input-placeholder {
-            color:$color-amber-1;
+            color:$color-green-1;
             text-shadow:0 0 .125em transparent;
             transition:all .25s;
           }
@@ -173,7 +174,7 @@ $color-dangerous-1: #FF5722;
           }
 
           &__icon1 {
-            color:$color-amber-1;
+            color:$color-green-1;
             position: absolute;
             right: 5px;
             font-size: 20px;
