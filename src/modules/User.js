@@ -1,8 +1,7 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 
 class User {
-
   static set token(token) {
     localStorage.setItem('token', token);
   }
@@ -16,8 +15,8 @@ class User {
   }
 
   static get data() {
-    let token = localStorage.getItem('token');
-    if(token) {
+    const token = localStorage.getItem('token');
+    if (token) {
       const user = jwt.decode(token);
       return user;
     }

@@ -1,9 +1,14 @@
-const path = require('path');
-const express = require('express');
 const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const http = require('http');
+const socketIO = require('socket.io');
 
 
 const app = express();
+const server = http.Server(app);
+const io = socketIO(server);
+
 
 // tell the app to look for static files in these directories
 app.use(express.static('./dist/'));
@@ -22,7 +27,8 @@ app.use('*', (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, (err) => {
+
+server.listen(port, (err) => {
   if (err) {
     console.log(err);
     return;
@@ -30,3 +36,7 @@ app.listen(port, (err) => {
 
   console.log(`Listening at http://localhost:${port}`);
 });
+
+
+const socketApi = require('./server/sockets');
+io.on('connection', socketApi);
