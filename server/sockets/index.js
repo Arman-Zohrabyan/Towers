@@ -1,4 +1,4 @@
-// const Board = require('./board.js');
+const Board = require('./board.js');
 // const Game = require('./game.js');
 
 
@@ -10,10 +10,14 @@ function disconnect() {
 
 
 
-
-
-const socketApi = (socket) => {
+const socketApi = (io) => (socket) => {
   online++;
+
+
+  socket.on('getBoards', Board(online, io).getBoards)
+  // socket.on('CreateBoard', Board(online, io).create)
+
+
 
   socket.on('disconnect', disconnect);
 };

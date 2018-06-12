@@ -39,4 +39,4 @@ server.listen(port, (err) => {
 
 
 const socketApi = require('./server/sockets');
-io.on('connection', socketApi);
+io.on('connection', socketApi(io));

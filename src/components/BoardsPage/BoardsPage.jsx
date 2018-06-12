@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
 import Room from './Room.jsx';
 import User from '../../modules/User';
 
+import { beginSocket, endSocket, getBoards } from './BoardsSocket';
 import './BoardsPage.scss';
+
 
 
 class BoardsPage extends Component {
   componentDidMount() {
+    beginSocket();
+    getBoards((boards) => console.log(boards))
   }
 
   componentWillUnmount() {
-    this.socket.disconnect();
+    endSocket();
+  }
+
+  send = () => {
+    // this.socket.emit('CreateBoard', 'board')
   }
 
   render() {
     const my = User.data;
-    this.socket = socketIOClient('http://localhost:4000');
-
 
     return (
       <div className='boardsPage'>
@@ -28,7 +33,7 @@ class BoardsPage extends Component {
               <span>Your Nickname:</span>
               <span>{` ${my.nickname}`}</span>
             </span>
-            <div className='boardsPage-button'>
+            <div className='boardsPage-button' onClick={this.send}>
               <p className='boardsPage-button__btnText'>CREATE NEW GAME</p>
               <div className='boardsPage-button__btnTwo'>
                 <p className='boardsPage-button__btnText2'>
