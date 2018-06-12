@@ -11,10 +11,8 @@ app.use(express.static('./dist/'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
 const api = require('./server/routes/api');
 app.use('/api', api);
-
 
 
 app.use('*', (req, res) => {

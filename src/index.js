@@ -6,13 +6,12 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import * as reducers from "./reducers";
+import * as reducers from './reducers';
 
 import './style.scss';
 import Layout from './components/Layout.jsx';
 import Join from './containers/Join/Join.jsx';
 import BoardsPage from './components/BoardsPage/BoardsPage.jsx';
-
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -22,9 +21,8 @@ const store = createStore(
 );
 
 
-
 render(
-  <Provider store={ store }>
+  <Provider store={store}>
     <BrowserRouter>
       <Layout>
         <Switch>

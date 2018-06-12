@@ -9,7 +9,6 @@ import './JoinPage.scss';
 
 class JoinPage extends Component {
   render() {
-    
     const {
       dangerousClass,
       handleChange,
@@ -59,12 +58,12 @@ class JoinPage extends Component {
 }
 
 
-//JoinPage.propTypes = {
-  /**
+// JoinPage.propTypes = {
+/**
    * browser history
    */
-  //history: PropTypes.object
-//};
+// history: PropTypes.object
+// };
 
 
 export default JoinPage;

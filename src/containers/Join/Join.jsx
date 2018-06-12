@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-
+import User from '../../modules/User';
 import JoinPage from '../../components/JoinPage/JoinPage.jsx';
 
 
@@ -32,7 +32,7 @@ class Join extends Component {
       fetch('/api/createUser/' + nickname)
         .then(res => res.json())
         .then(res => {
-          console.log(res.token)
+          User.token = res.token;
           history.push('/boards');
         });
     } else {
@@ -53,6 +53,7 @@ class Join extends Component {
       [name]: value
     });
   }
+
 
   render() {
     const { dangerous, isNicknameCorrect, nickname } = this.state;
