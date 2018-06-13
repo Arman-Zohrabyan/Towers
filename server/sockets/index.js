@@ -2,24 +2,32 @@ const Board = require('./board.js');
 // const Game = require('./game.js');
 
 
-let online = 0;
+let socket_user = {};
 
-function disconnect() {
-    online--;
+const disconnect = (io, socket) => () => {
+    const socketId = socket.id;
+    const userId = socket_user[socketId];
+
+    Board(io, socket).removeUser(userId);
+    delete socket_user[socket.id];
+}
+
+const storeUserId = (io, socket) => (userId) => {
+    socket_user[socket.id] = userId;
 }
 
 
 
 const socketApi = (io) => (socket) => {
-  online++;
+  socket.on('storeUserId', storeUserId(io, socket));
 
 
-  socket.on('getBoards', Board(online, io).getBoards)
-  // socket.on('CreateBoard', Board(online, io).create)
+  socket.on('getRooms', Board(io, socket).getRooms);
+  socket.on('createRoom', Board(io, socket).createRoom);
+  socket.on('joinToRoom', Board(io, socket).joinToRoom);
 
 
-
-  socket.on('disconnect', disconnect);
+  socket.on('disconnect', disconnect(io, socket));
 };
 
 
