@@ -6,7 +6,7 @@ let obj = {
     },
     'sasdczxczxc123123njfddd': {
         createdBy: "Addsdsdsd",
-        usersIn: ['sasdczxczxc123123njfddd, sasdczxczxc123123njfqw'],
+        usersIn: ['sasdczxczxc123123njfddd', 'sasdczxczxc123123njfqw'],
         status: 1
     },
     'sasdczxczxc123123nj': {

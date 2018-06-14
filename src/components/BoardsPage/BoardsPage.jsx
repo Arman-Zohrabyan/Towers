@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Room from './Room.jsx';
 import User from '../../modules/User';
 
-import { beginSocket, endSocket, getRooms, createRoom, joinToRoom } from './BoardsSocket';
+import { beginSocket, endSocket, getRooms, createRoom, joinToRoom } from '../../sockets';
+import Helper from '../../../common/helper';
 import './BoardsPage.scss';
 
 
@@ -39,7 +40,8 @@ class BoardsPage extends Component {
   render() {
     const my = User.data;
     const { rooms } = this.state;
-    const iAlreadyCreatedRoom = Object.keys(rooms).includes(my.id);
+    const iAmAlreadyCreatedTheRoom = Object.keys(rooms).includes(my.id);
+    const iAmInTheRoom = !!Helper.userPosition(rooms, my.id);
 
     return (
       <div className='boardsPage'>
@@ -51,8 +53,8 @@ class BoardsPage extends Component {
               <span>{` ${my.nickname}`}</span>
             </span>
             {
-              iAlreadyCreatedRoom ?
-              <span className='boardsPage-container__header__info'>You already created a room.</span> :
+              iAmAlreadyCreatedTheRoom || iAmInTheRoom ?
+              <span className='boardsPage-container__header__info'>You already in the room.</span> :
               <div className='boardsPage-button' onClick={this.create.bind(this, my.id, my.nickname)}>
                 <p className='boardsPage-button__btnText'>CREATE NEW GAME</p>
                 <div className='boardsPage-button__btnTwo'>
