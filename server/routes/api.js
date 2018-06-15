@@ -7,17 +7,17 @@ const config = require('../../config.json');
 const router = new express.Router();
 
 router.get('/createUser/:nickname', (req, res) => {
-  const user = {
-    id: ObjectId(),
-    nickname: req.params.nickname
-  };
+    const user = {
+        id: ObjectId(),
+        nickname: req.params.nickname
+    };
 
-  const token = jwt.sign(user, config.jwtSecret);
+    const token = jwt.sign(user, config.jwtSecret);
 
-  res.status(200).json({
-    token,
-    success: true
-  });
+    res.status(200).json({
+        token,
+        success: true
+    });
 });
 
 module.exports = router;

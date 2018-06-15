@@ -16,21 +16,21 @@ import BoardsPage from './components/BoardsPage/BoardsPage.jsx';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  combineReducers(reducers),
-  composeEnhancers(applyMiddleware(thunk))
+    combineReducers(reducers),
+    composeEnhancers(applyMiddleware(thunk))
 );
 
 
 render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Layout>
-        <Switch>
-          <Redirect exact from='/' to='/join' />
-          <Route exact path='/join' component={Join}/>
-          <Route exact path='/boards' component={BoardsPage}/>
-        </Switch>
-      </Layout>
-    </BrowserRouter>
-  </Provider>
-  , document.getElementById('game'));
+    <Provider store={store}>
+        <BrowserRouter>
+            <Layout>
+                <Switch>
+                    <Redirect exact from='/' to='/join' />
+                    <Route exact path='/join' component={Join}/>
+                    <Route exact path='/boards' component={BoardsPage}/>
+                </Switch>
+            </Layout>
+        </BrowserRouter>
+    </Provider>
+    , document.getElementById('game'));

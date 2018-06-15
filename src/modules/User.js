@@ -2,26 +2,26 @@ import jwt from 'jsonwebtoken';
 
 
 class User {
-  static set token(token) {
-    localStorage.setItem('token', token);
-  }
-
-  static get isJoined() {
-    return localStorage.getItem('token') !== null;
-  }
-
-  static get removeToken() {
-    localStorage.removeItem('token');
-  }
-
-  static get data() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const user = jwt.decode(token);
-      return user;
+    static set token(token) {
+        localStorage.setItem('token', token);
     }
-    return {};
-  }
+
+    static get isJoined() {
+        return localStorage.getItem('token') !== null;
+    }
+
+    static get removeToken() {
+        localStorage.removeItem('token');
+    }
+
+    static get data() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const user = jwt.decode(token);
+            return user;
+        }
+        return {};
+    }
 }
 
 

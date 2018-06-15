@@ -141,7 +141,6 @@ $color-gray-1: #111;
             display: flex;
             height: 100%;
             flex-direction: column;
-            color: #FFEB3B;
             font-weight: 500;
             font-size: 17px;
             span {
@@ -172,9 +171,6 @@ $color-gray-1: #111;
             &::before {
                 content: 'Watch';
             }
-            .boardsPage-room__content {
-                color: #D84315;
-            }
         }
         &__ready {
             &::before {
@@ -189,9 +185,6 @@ $color-gray-1: #111;
             &:hover::after {
                 border-width: 25px 95px;
             }
-            .boardsPage-room__content {
-                color: #388E3C;
-            }
         }
         &__hide {
             &::before {
@@ -199,6 +192,21 @@ $color-gray-1: #111;
             }
             &::after {
                 display: none;
+            }
+        }
+        &.red {
+            .boardsPage-room__content {
+                color: #D84315;
+            }
+        }
+        &.green {
+            .boardsPage-room__content {
+                color: #388E3C;
+            }
+        }
+        &.yellow {
+            .boardsPage-room__content {
+                color: #FFEB3B;
             }
         }
     }

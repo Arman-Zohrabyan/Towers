@@ -1,21 +1,21 @@
+/* eslint-disable */
 const Board = require('./board.js');
 // const Game = require('./game.js');
 
 
-let socket_user = {};
+const socket_user = {};
 
 const disconnect = (io, socket) => () => {
-    const socketId = socket.id;
-    const userId = socket_user[socketId];
+  const socketId = socket.id;
+  const userId = socket_user[socketId];
 
-    Board(io, socket).removeUser(userId);
-    delete socket_user[socket.id];
-}
+  Board(io, socket).removeUser(userId);
+  delete socket_user[socket.id];
+};
 
 const storeUserId = (io, socket) => (userId) => {
-    socket_user[socket.id] = userId;
-}
-
+  socket_user[socket.id] = userId;
+};
 
 
 const socketApi = (io) => (socket) => {
@@ -31,7 +31,5 @@ const socketApi = (io) => (socket) => {
 };
 
 
-
-
-
 module.exports = socketApi;
+/* eslint-enable */

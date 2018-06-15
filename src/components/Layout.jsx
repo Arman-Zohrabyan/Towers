@@ -10,43 +10,43 @@ import Loading from './Loading.jsx';
 
 
 class Layout extends React.Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.state = {
-      isReady: false
-    };
-  }
+        this.state = {
+            isReady: false
+        };
+    }
 
-  componentDidMount() {
-    const that = this;
-    window.onload = function () {
-      that.setState({ isReady: true });
-    };
-  }
+    componentDidMount() {
+        const that = this;
+        window.onload = function () {
+            that.setState({ isReady: true });
+        };
+    }
 
-  render() {
-    return (
-      <Fragment>
-        { !this.state.isReady && <Loading /> }
+    render() {
+        return (
+            <Fragment>
+                { !this.state.isReady && <Loading /> }
 
-        <div className='toggleScreenButton' onClick={toggleScreen} />
+                <div className='toggleScreenButton' onClick={toggleScreen} />
 
-        <div id='main'>
-          {this.props.children}
-        </div>
+                <div id='main'>
+                    {this.props.children}
+                </div>
 
-      </Fragment>
-    );
-  }
+            </Fragment>
+        );
+    }
 }
 
 
 Layout.propTypes = {
-  /**
+    /**
    * Page component or container
    */
-  children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired
 };
 
 
