@@ -44,7 +44,7 @@ module.exports = (io) => {
         startingGame: (roomId) => {
             container.startGame(roomId);
 
-            io.sockets.emit('getRooms', container.rooms);  
+            io.sockets.emit('getRooms', container.rooms);
         }
     };
 };
