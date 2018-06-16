@@ -4,7 +4,7 @@
  * Class which contains and control rooms.
  */
 
-const Room = require('./room.js');
+const Room = require('./Room.js');
 
 
 class RoomsContainer {
@@ -57,7 +57,7 @@ class RoomsContainer {
         let result = false;
         Object.keys(this.rooms).forEach(roomId => {
             const poition = this.rooms[roomId].userPosition(userId);
-            if (poition) {
+            if (typeof poition === 'number') {
                 result = { roomId, poition };
                 return;
             }

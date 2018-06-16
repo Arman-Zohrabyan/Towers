@@ -27,5 +27,8 @@ function joinToRoom(data) {
     socket.emit('joinToRoom', data);
 }
 
+function leftRoom(userId) {
+    socket.emit('leaveRoom', userId);
+}
 
-export { beginSocket, endSocket, getRooms, createRoom, joinToRoom };
+export { beginSocket, endSocket, getRooms, createRoom, joinToRoom, leftRoom };

@@ -4,31 +4,13 @@ import './BoardsPage.scss';
 
 // STATUSES ===>      0 === waiting, 1 === ready, 2 === started
 const statuses = ['Waiting', 'READY', 'Started'];
-const colors = ['yellow', 'green', 'red'];
 
 class Room extends Component {
     render() {
-        const { room, myId, handleClick, amIInTheRoom } = this.props;
-        let additionalClasses = ` ${colors[room.status]}`;
-
-        if (amIInTheRoom) {
-            const iAmInThisRoom = room.usersList.includes(myId);
-            if (iAmInThisRoom) {
-                additionalClasses += ' boardsPage-room__iAmIn';
-            }
-            if (room.id === myId && room.status === 1) {
-                additionalClasses += ' boardsPage-room__ready';
-            } else if (!iAmInThisRoom) {
-                additionalClasses += ' boardsPage-room__hide';
-            }
-        } else if (room.status === 1) {
-            additionalClasses += ' boardsPage-room__hide';
-        } else if (room.status === 2) {
-            additionalClasses += ' boardsPage-room__started';
-        }
+        const { room, myId, handleClick, additionalClass } = this.props;
 
         return (
-            <div className={`boardsPage-room${additionalClasses}`} onClick={() => handleClick(myId, room.id)}>
+            <div className={`boardsPage-room${additionalClass}`} onClick={handleClick}>
                 <div className='boardsPage-room__content'>
                     <i className='fas fa-check' />
                     <span className='boardsPage-room__content__status'>

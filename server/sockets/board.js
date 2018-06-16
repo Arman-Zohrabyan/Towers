@@ -1,4 +1,4 @@
-const RoomsContainer = require('./classes/roomsContainer.js');
+const RoomsContainer = require('./classes/RoomsContainer.js');
 
 
 const container = new RoomsContainer();

@@ -25,6 +25,7 @@ const socketApi = (io) => (socket) => {
   socket.on('getRooms', Board(io, socket).getRooms);
   socket.on('createRoom', Board(io, socket).createRoom);
   socket.on('joinToRoom', Board(io, socket).joinToRoom);
+  socket.on('leaveRoom', Board(io, socket).removeUser);
 
 
   socket.on('disconnect', disconnect(io, socket));
