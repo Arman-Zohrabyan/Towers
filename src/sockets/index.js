@@ -31,4 +31,8 @@ function leftRoom(userId) {
     socket.emit('leaveRoom', userId);
 }
 
-export { beginSocket, endSocket, getRooms, createRoom, joinToRoom, leftRoom };
+function startingGame(roomId) {
+    socket.emit('startStatus', roomId);
+}
+
+export { beginSocket, endSocket, getRooms, createRoom, joinToRoom, leftRoom, startingGame };

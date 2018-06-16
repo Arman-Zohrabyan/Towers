@@ -40,6 +40,11 @@ module.exports = (io) => {
             container.userJoin(roomId, userId);
 
             io.sockets.emit('getRooms', container.rooms);
+        },
+        startingGame: (roomId) => {
+            container.startGame(roomId);
+
+            io.sockets.emit('getRooms', container.rooms);  
         }
     };
 };
