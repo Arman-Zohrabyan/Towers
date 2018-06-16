@@ -4,7 +4,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import User from '../../modules/User';
 import JoinPage from '../../components/JoinPage/JoinPage.jsx';
 

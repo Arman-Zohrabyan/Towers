@@ -1,3 +1,10 @@
+/**
+ * Created By: Arman Zohrabyan
+ *
+ * Game page.
+ */
+
+
 module.exports = {
     userPosition: (rooms, userId) => {
         let result = false;

@@ -1,3 +1,9 @@
+/**
+ * Created By: Arman Zohrabyan
+ *
+ * App Initial file.
+ */
+
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -12,6 +18,7 @@ import './style.scss';
 import Layout from './components/Layout.jsx';
 import Join from './containers/Join/Join.jsx';
 import BoardsPage from './components/BoardsPage/BoardsPage.jsx';
+import GamePage from './components/GamePage/GamePage.jsx';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,6 +36,7 @@ render(
                     <Redirect exact from='/' to='/join' />
                     <Route exact path='/join' component={Join}/>
                     <Route exact path='/boards' component={BoardsPage}/>
+                    <Route exact path='/boards' component={GamePage}/>
                 </Switch>
             </Layout>
         </BrowserRouter>

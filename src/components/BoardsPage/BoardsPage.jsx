@@ -1,3 +1,10 @@
+/**
+ * Created By: Arman Zohrabyan
+ *
+ * Boards page.
+ */
+
+
 import React, { Component } from 'react';
 import Room from './Room.jsx';
 import User from '../../modules/User';
@@ -52,6 +59,10 @@ class BoardsPage extends Component {
 
     start = (roomId) => {
         startingGame(roomId);
+    }
+
+    goToGameRoom(roomId) {
+
     }
 
     render() {
