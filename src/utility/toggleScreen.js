@@ -1,3 +1,7 @@
+/**
+ * Created By: Arman Zohrabyan
+ */
+
 /*eslint-disable */
 
 const toggleScreen = () => {

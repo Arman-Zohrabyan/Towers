@@ -12,8 +12,8 @@ import User from '../../modules/User';
 import Helper from '../../../common/helper';
 import './BoardsPage.scss';
 import {
-    beginSocket,
-    endSocket,
+    joinBoards,
+    leaveBoards,
     getRooms,
     createRoom,
     joinToRoom,
@@ -34,23 +34,31 @@ class BoardsPage extends Component {
     }
 
     componentDidMount() {
-        beginSocket(User.data.id);
+        joinBoards();
 
+        // TODO:   this.mounted   so bad solution!
+        this.mounted = true;
         getRooms((rooms) => {
-            this.setState({ rooms });
+            if(this.mounted) {
+                this.setState({ rooms });
+            }
         });
     }
 
     componentWillUnmount() {
-        endSocket();
+        this.mounted = false;
+        leaveBoards();
     }
 
     create = (myId, myNickname) => {
         createRoom({ id: myId, nickname: myNickname });
     }
 
-    join = (myId, roomId) => {
+    join = (myId, roomId, status) => {
         joinToRoom({ roomId, userId: myId });
+        if(status === 2) {
+            this.goToGameRoom(roomId);
+        }
     }
 
     left = (userId) => {
@@ -59,10 +67,13 @@ class BoardsPage extends Component {
 
     start = (roomId) => {
         startingGame(roomId);
+        this.goToGameRoom(roomId);
     }
 
-    goToGameRoom(roomId) {
-
+    goToGameRoom = (roomId) => {
+        setTimeout(() => {
+            this.props.history.push(`/room/${roomId}`);
+        }, 800)
     }
 
     render() {
@@ -99,7 +110,7 @@ class BoardsPage extends Component {
                             const room = rooms[id];
                             room.id = id;
 
-                            let handleClickEvent = () => (this.join(my.id, room.id));
+                            let handleClickEvent = () => (this.join(my.id, room.id, room.status));
                             let additionalClasses = ` ${colors[room.status]}`;
 
                             if (iAmInTheRoom) {
@@ -119,7 +130,7 @@ class BoardsPage extends Component {
                                 handleClickEvent = () => (console.warn('Please wait.'));
                                 additionalClasses += ' boardsPage-room__hide';
                             } else if (room.status === 2) {
-                                handleClickEvent = () => (this.join(my.id, room.id));
+                                handleClickEvent = () => (this.join(my.id, room.id, room.status));
                                 additionalClasses += ' boardsPage-room__started';
                             }
 

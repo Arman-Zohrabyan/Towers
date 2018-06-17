@@ -36,7 +36,7 @@ render(
                     <Redirect exact from='/' to='/join' />
                     <Route exact path='/join' component={Join}/>
                     <Route exact path='/boards' component={BoardsPage}/>
-                    <Route exact path='/boards' component={GamePage}/>
+                    <Route exact path='/room/:socketId' component={GamePage}/>
                 </Switch>
             </Layout>
         </BrowserRouter>

@@ -1,3 +1,7 @@
+/**
+ * Created By: Arman Zohrabyan
+ */
+
 const RoomsContainer = require('./classes/RoomsContainer.js');
 
 
@@ -24,27 +28,27 @@ container.userJoin('sasdczxczxc123123njfac', 'www');
 module.exports = (io) => {
     return {
         getRooms: () => {
-            io.sockets.emit('getRooms', container.rooms);
+            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
         },
         createRoom: ({ id, nickname }) => {
             container.createRoom(id, nickname);
 
-            io.sockets.emit('getRooms', container.rooms);
+            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
         },
         removeUser: (userId) => {
             container.fullRemoveUser(userId);
 
-            io.sockets.emit('getRooms', container.rooms);
+            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
         },
         joinToRoom: ({ roomId, userId }) => {
             container.userJoin(roomId, userId);
 
-            io.sockets.emit('getRooms', container.rooms);
+            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
         },
         startingGame: (roomId) => {
             container.startGame(roomId);
 
-            io.sockets.emit('getRooms', container.rooms);
+            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
         }
     };
 };

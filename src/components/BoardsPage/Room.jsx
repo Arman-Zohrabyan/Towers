@@ -1,3 +1,7 @@
+/**
+ * Created By: Arman Zohrabyan
+ */
+
 import React, { Component } from 'react';
 import './BoardsPage.scss';
 

@@ -1,17 +1,24 @@
 /**
+ * Created By: Arman Zohrabyan
+ *
  * Layout Component.
  */
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import User from '../modules/User';
 import toggleScreen from '../utility/toggleScreen';
+import { beginSocket, endSocket } from '../sockets';
+
 import Loading from './Loading.jsx';
+
 
 
 class Layout extends React.Component {
     constructor() {
         super();
+        beginSocket(User.data.id);
 
         this.state = {
             isReady: false
@@ -23,6 +30,10 @@ class Layout extends React.Component {
         window.onload = function () {
             that.setState({ isReady: true });
         };
+    }
+
+    componentWillUnmount() {
+        endSocket();
     }
 
     render() {
