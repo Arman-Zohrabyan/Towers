@@ -26,29 +26,29 @@ container.userJoin('sasdczxczxc123123njfac', 'www');
 
 
 module.exports = (io) => {
-    return {
-        getRooms: () => {
-            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
-        },
-        createRoom: ({ id, nickname }) => {
-            container.createRoom(id, nickname);
+  return {
+    getRooms: () => {
+      io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
+    },
+    createRoom: ({ id, nickname }) => {
+      container.createRoom(id, nickname);
 
-            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
-        },
-        removeUser: (userId) => {
-            container.fullRemoveUser(userId);
+      io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
+    },
+    removeUser: (userId) => {
+      container.fullRemoveUser(userId);
 
-            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
-        },
-        joinToRoom: ({ roomId, userId }) => {
-            container.userJoin(roomId, userId);
+      io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
+    },
+    joinToRoom: ({ roomId, userId }) => {
+      container.userJoin(roomId, userId);
 
-            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
-        },
-        startingGame: (roomId) => {
-            container.startGame(roomId);
+      io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
+    },
+    startingGame: (roomId) => {
+      container.startGame(roomId);
 
-            io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
-        }
-    };
+      io.sockets.in('boardsRoom').emit('getRooms', container.rooms);
+    }
+  };
 };

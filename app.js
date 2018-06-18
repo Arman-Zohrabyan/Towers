@@ -21,7 +21,7 @@ app.use('/api', api);
 
 
 app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/dist/index.html'));
+  res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
 
@@ -29,12 +29,12 @@ const port = process.env.PORT || 3000;
 
 
 server.listen(port, (err) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-    console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
 
 
