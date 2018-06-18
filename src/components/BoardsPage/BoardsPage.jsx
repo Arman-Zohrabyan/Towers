@@ -50,15 +50,22 @@ class BoardsPage extends Component {
     leaveBoards();
   }
 
+  componentDidUpdate() {
+    const { rooms } = this.state;
+    if(this.myPosition) {
+      const { status } = rooms[this.myPosition.roomId];
+      if(status === 2) {
+        this.goToGameRoom(this.myPosition.roomId);
+      }
+    }
+  }
+
     create = (myId, myNickname) => {
       createRoom({ id: myId, nickname: myNickname });
     }
 
-    join = (myId, roomId, status) => {
+    join = (myId, roomId) => {
       joinToRoom({ roomId, userId: myId });
-      if (status === 2) {
-        this.goToGameRoom(roomId);
-      }
     }
 
     left = (userId) => {
@@ -67,7 +74,6 @@ class BoardsPage extends Component {
 
     start = (roomId) => {
       startingGame(roomId);
-      this.goToGameRoom(roomId);
     }
 
     goToGameRoom = (roomId) => {
@@ -80,7 +86,7 @@ class BoardsPage extends Component {
       const my = User.data;
       const { rooms } = this.state;
       const iAmAlreadyCreatedTheRoom = Object.keys(rooms).includes(my.id);
-      const iAmInTheRoom = !!Helper.userPosition(rooms, my.id);
+      this.myPosition = Helper.userPosition(rooms, my.id);
 
 
       return (
@@ -93,7 +99,7 @@ class BoardsPage extends Component {
                 <span>{` ${my.nickname}`}</span>
               </span>
               {
-                iAmAlreadyCreatedTheRoom || iAmInTheRoom ?
+                iAmAlreadyCreatedTheRoom || this.myPosition ?
                   <span className='boardsPage-container__header__info'>You already in the room.</span> :
                   <div className='boardsPage-button' onClick={this.create.bind(this, my.id, my.nickname)}>
                     <p className='boardsPage-button__btnText'>CREATE NEW GAME</p>
@@ -113,7 +119,7 @@ class BoardsPage extends Component {
                 let handleClickEvent = () => (this.join(my.id, room.id, room.status));
                 let additionalClasses = ` ${colors[room.status]}`;
 
-                if (iAmInTheRoom) {
+                if (this.myPosition) {
                   const iAmInThisRoom = room.usersList.includes(my.id);
                   if (iAmInThisRoom) {
                     handleClickEvent = () => (this.left(my.id));
