@@ -5,7 +5,8 @@
   "scripts": {
     "eslint": "eslint ./ --ext .jsx --ext .js",
     "eslint:fix": "eslint --fix ./ --ext .jsx --ext .js",
-    "nodemon": "PORT=4000 nodemon app.js",
+    "start": "node index.js",
+    "nodemon": "PORT=4000 nodemon index.js",
     "webpack": "webpack --watch"
   },
   "repository": {
