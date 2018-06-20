@@ -41,9 +41,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    // new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin(['public']),
-    new LiveReloadPlugin({ appendScriptTag: true })
+    new LiveReloadPlugin({ appendScriptTag: true, delay: 2000 })
     // new webpack.optimize.UglifyJsPlugin({
     //   compressor: {
     //     warnings: false

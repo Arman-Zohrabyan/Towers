@@ -11,6 +11,7 @@ import {
   leaveSocketRoom,
   getGameData
 } from '../../sockets';
+import A from '../../sockets/A';
 
 
 class GamePage extends Component {
@@ -23,6 +24,7 @@ class GamePage extends Component {
   }
 
   componentDidMount() {
+    console.log(A.print());
     const { socketId } = this.props.match.params;
     joinSocketRoom(socketId);
 

@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 
 import User from '../modules/User';
 import toggleScreen from '../utility/toggleScreen';
-import { beginSocket, endSocket } from '../sockets';
+import Socket from '../sockets';
+import A from '../sockets/A';
 
 import Loading from './Loading.jsx';
 
@@ -17,7 +18,7 @@ import Loading from './Loading.jsx';
 class Layout extends React.Component {
   constructor() {
     super();
-    beginSocket(User.data.id);
+    Socket.init(User.data.id);
 
     this.state = {
       isReady: false
@@ -32,7 +33,7 @@ class Layout extends React.Component {
   }
 
   componentWillUnmount() {
-    endSocket();
+    Socket.end();
   }
 
   render() {

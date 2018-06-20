@@ -3,20 +3,25 @@
  */
 
 import openSocket from 'socket.io-client';
+import A from './A';
 let socket;
 
+class Socket {
 
-function beginSocket(userId) {
-  socket = openSocket('http://localhost:4000');
+  static init(userId) {
+    socket = openSocket('http://localhost:4000');
+    A.init(socket);
+    socket.on('connect', () => {
+      socket.emit('storeUserId', userId);
+    });
+  }
 
-  socket.on('connect', () => {
-    socket.emit('storeUserId', userId);
-  });
+  static end() {
+    socket.disconnect();
+  }
+
 }
 
-function endSocket() {
-  socket.disconnect();
-}
 
 
 /**/
@@ -65,6 +70,8 @@ function getGameData(roomId, cb) {
 }
 /**/
 
-export { joinBoards, leaveBoards,
-  beginSocket, endSocket, getRooms, createRoom, joinToRoom, leftRoom, startingGame,
-  joinSocketRoom, leaveSocketRoom, getGameData };
+export default Socket;
+
+// export { joinBoards, leaveBoards,
+//   beginSocket, endSocket, getRooms, createRoom, joinToRoom, leftRoom, startingGame,
+//   joinSocketRoom, leaveSocketRoom, getGameData };
