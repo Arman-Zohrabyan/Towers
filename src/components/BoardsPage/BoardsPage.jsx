@@ -78,7 +78,7 @@ class BoardsPage extends Component {
             </span>
             {
               iAmAlreadyCreatedTheRoom || this.myPosition ?
-                <span className='boardsPage-container__header__info'>You already in the room.</span> :
+                <span className='boardsPage-container__header__info'>You are already in the room.</span> :
                 <div className='boardsPage-button' onClick={() => {
                   Socket.createRoom({ id: myId, nickname: myNickname });
                 }}
