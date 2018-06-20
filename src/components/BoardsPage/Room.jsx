@@ -3,11 +3,12 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './BoardsPage.scss';
-
 
 // STATUSES ===>      0 === waiting, 1 === ready, 2 === started
 const statuses = ['Waiting', 'READY', 'Started'];
+
 
 class Room extends Component {
   render() {
@@ -34,6 +35,26 @@ class Room extends Component {
     );
   }
 }
+
+
+Room.propTypes = {
+  /**
+   * Room data
+   */
+  room: PropTypes.object,
+  /**
+   * Current user id
+   */
+  myId: PropTypes.string,
+  /**
+   * Room click event handle
+   */
+  handleClick: PropTypes.func,
+  /**
+   * Additional class for component
+   */
+  additionalClass: PropTypes.string
+};
 
 
 export default Room;

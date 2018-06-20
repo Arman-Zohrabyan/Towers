@@ -16,7 +16,11 @@ function onlyStatics(...mixins) {
 
 function copyProperties(target, source) {
   Object.getOwnPropertyNames(source).filter(key => {
-    if (typeof source[key] === 'function' && key !== 'constructor' && key !== 'prototype' && key !== 'name' && key !== 'length') {
+    if (typeof source[key] === 'function' &&
+        key !== 'constructor' &&
+        key !== 'prototype' &&
+        key !== 'name' &&
+        key !== 'length') {
       const desc = Object.getOwnPropertyDescriptor(source, key);
       Object.defineProperty(target, key, desc);
     }

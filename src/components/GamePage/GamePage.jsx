@@ -18,14 +18,13 @@ class GamePage extends Component {
 
     this.state = {
       message: '',
-      userId: data.id,
-      nickname: data.nickname
+      myId: data.id
     };
   }
 
   componentDidMount() {
     const { socketId } = this.props.match.params;
-    Socket.joinSocketRoom(socketId);
+    Socket.joinSocketRoom(this.state.myId);
 
     // TODO:   this.mounted   so bad solution!
     this.mounted = true;
@@ -38,7 +37,7 @@ class GamePage extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    Socket.leftRoom(this.state.userId);
+    Socket.leftRoom(this.state.myId);
     Socket.leaveSocketRoom();
   }
 

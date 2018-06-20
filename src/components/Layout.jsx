@@ -6,11 +6,9 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-
-import User from '../modules/User';
 import toggleScreen from '../utility/toggleScreen';
+import User from '../modules/User';
 import Socket from '../sockets';
-
 import Loading from './Loading.jsx';
 
 
