@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import User from '../modules/User';
 import toggleScreen from '../utility/toggleScreen';
 import Socket from '../sockets';
-import A from '../sockets/A';
 
 import Loading from './Loading.jsx';
 

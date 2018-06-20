@@ -6,31 +6,30 @@
 
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import {
-  joinSocketRoom,
-  leaveSocketRoom,
-  getGameData
-} from '../../sockets';
-import A from '../../sockets/A';
+import User from '../../modules/User';
+import Socket from '../../sockets';
 
 
 class GamePage extends Component {
   constructor(props) {
     super(props);
 
+    const data = User.data;
+
     this.state = {
-      message: ''
+      message: '',
+      userId: data.id,
+      nickname: data.nickname
     };
   }
 
   componentDidMount() {
-    console.log(A.print());
     const { socketId } = this.props.match.params;
-    joinSocketRoom(socketId);
+    Socket.joinSocketRoom(socketId);
 
     // TODO:   this.mounted   so bad solution!
     this.mounted = true;
-    getGameData(socketId, (message) => {
+    Socket.getGameData(socketId, (message) => {
       if (this.mounted) {
         this.setState({ message });
       }
@@ -39,7 +38,8 @@ class GamePage extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    leaveSocketRoom();
+    Socket.leftRoom(this.state.userId);
+    Socket.leaveSocketRoom();
   }
 
     back = () => {

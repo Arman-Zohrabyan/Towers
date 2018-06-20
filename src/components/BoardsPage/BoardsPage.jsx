@@ -11,15 +11,7 @@ import User from '../../modules/User';
 
 import Helper from '../../../common/helper';
 import './BoardsPage.scss';
-import {
-  joinBoards,
-  leaveBoards,
-  getRooms,
-  createRoom,
-  joinToRoom,
-  leftRoom,
-  startingGame
-} from '../../sockets';
+import Socket from '../../sockets';
 
 const colors = ['yellow', 'green', 'red'];
 
@@ -34,11 +26,11 @@ class BoardsPage extends Component {
   }
 
   componentDidMount() {
-    joinBoards();
+    Socket.joinBoards();
 
     // TODO:   this.mounted   so bad solution!
     this.mounted = true;
-    getRooms((rooms) => {
+    Socket.getRooms((rooms) => {
       if (this.mounted) {
         this.setState({ rooms });
       }
@@ -47,33 +39,33 @@ class BoardsPage extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    leaveBoards();
+    Socket.leaveBoards();
   }
 
   componentDidUpdate() {
     const { rooms } = this.state;
-    if(this.myPosition) {
+    if (this.myPosition) {
       const { status } = rooms[this.myPosition.roomId];
-      if(status === 2) {
+      if (status === 2) {
         this.goToGameRoom(this.myPosition.roomId);
       }
     }
   }
 
     create = (myId, myNickname) => {
-      createRoom({ id: myId, nickname: myNickname });
+      Socket.createRoom({ id: myId, nickname: myNickname });
     }
 
     join = (myId, roomId) => {
-      joinToRoom({ roomId, userId: myId });
+      Socket.joinToRoom({ roomId, userId: myId });
     }
 
     left = (userId) => {
-      leftRoom(userId);
+      Socket.leftRoom(userId);
     }
 
     start = (roomId) => {
-      startingGame(roomId);
+      Socket.startingGame(roomId);
     }
 
     goToGameRoom = (roomId) => {
