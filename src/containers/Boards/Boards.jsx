@@ -103,6 +103,11 @@ class Boards extends Component {
     }
   }
 
+  createRoom = () => {
+    const { myId,myNickname } = this.state;
+    Socket.createRoom({ id: myId, nickname: myNickname });
+  }
+
   render() {
     const { myId, myNickname, rooms } = this.state;
     const iAmAlreadyCreatedTheRoom = Object.keys(rooms).includes(myId);
@@ -117,6 +122,7 @@ class Boards extends Component {
         myPosition={this.myPosition}
         rooms={rooms}
         getEventAndAdditionalClass={this.getEventAndAdditionalClass}
+        createRoom={this.createRoom}
       />
     );
   }

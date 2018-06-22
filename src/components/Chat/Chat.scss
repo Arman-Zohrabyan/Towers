@@ -1,0 +1,21 @@
+.widget-container {
+    .launcher {
+        box-shadow: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        .open-launcher {
+            width: 60%;
+        }
+        .close-launcher {
+            width: 40%;
+        }
+        .badge {
+            top: -10px;
+            right: -7px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+        }
+    }
+}

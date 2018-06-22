@@ -8,12 +8,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Room from './Room.jsx';
-import User from '../../modules/User';
-import Helper from '../../../common/helper';
-import Socket from '../../sockets';
 import './BoardsPage.scss';
-
-const colors = ['yellow', 'green', 'red'];
 
 
 class BoardsPage extends Component {
@@ -25,7 +20,8 @@ class BoardsPage extends Component {
       iAmAlreadyCreatedTheRoom,
       myPosition,
       rooms,
-      getEventAndAdditionalClass
+      getEventAndAdditionalClass,
+      createRoom
     } = this.props;
 
     return (
@@ -40,9 +36,7 @@ class BoardsPage extends Component {
             {
               iAmAlreadyCreatedTheRoom || myPosition ?
                 <span className='boardsPage-container__header__info'>You are already in the room.</span> :
-                <div className='boardsPage-button' onClick={() => {
-                  Socket.createRoom({ id: myId, nickname: myNickname });
-                }}
+                <div className='boardsPage-button' onClick={createRoom}
                 >
                   <p className='boardsPage-button__btnText'>CREATE NEW GAME</p>
                   <div className='boardsPage-button__btnTwo'>
