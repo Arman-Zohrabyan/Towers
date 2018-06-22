@@ -17,55 +17,16 @@ const colors = ['yellow', 'green', 'red'];
 
 
 class BoardsPage extends Component {
-  constructor(props) {
-    super(props);
-    const data = User.data;
-
-    this.state = {
-      rooms: {},
-      myId: data.id,
-      myNickname: data.nickname
-    };
-  }
-
-  componentDidMount() {
-    Socket.joinBoards();
-
-    // TODO:   this.mounted   so bad solution!
-    this.mounted = true;
-    Socket.getRooms((rooms) => {
-      if (this.mounted) {
-        this.setState({ rooms });
-      }
-    });
-  }
-
-  componentDidUpdate() {
-    const { rooms } = this.state;
-    if (this.myPosition) {
-      const { status } = rooms[this.myPosition.roomId];
-      if (status === 2) {
-        this.goToGameRoom(this.myPosition.roomId);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-    Socket.leaveBoards();
-  }
-
-  goToGameRoom = (roomId) => {
-    setTimeout(() => {
-      this.props.history.push(`/room/${roomId}`);
-    }, 800);
-  }
 
   render() {
-    const { myId, myNickname, rooms } = this.state;
-    const iAmAlreadyCreatedTheRoom = Object.keys(rooms).includes(myId);
-    this.myPosition = Helper.userPosition(rooms, myId);
-
+    const {
+      myId,
+      myNickname,
+      iAmAlreadyCreatedTheRoom,
+      myPosition,
+      rooms,
+      getEventAndAdditionalClass
+    } = this.props;
 
     return (
       <div className='boardsPage'>
@@ -77,7 +38,7 @@ class BoardsPage extends Component {
               <span>{` ${myNickname}`}</span>
             </span>
             {
-              iAmAlreadyCreatedTheRoom || this.myPosition ?
+              iAmAlreadyCreatedTheRoom || myPosition ?
                 <span className='boardsPage-container__header__info'>You are already in the room.</span> :
                 <div className='boardsPage-button' onClick={() => {
                   Socket.createRoom({ id: myId, nickname: myNickname });
@@ -96,38 +57,7 @@ class BoardsPage extends Component {
             Object.keys(rooms).map((id, key) => {
               const room = rooms[id];
               room.id = id;
-
-              let handleClickEvent = () => {
-                Socket.joinToRoom({ roomId: room.id, userId: myId });
-              };
-              let additionalClasses = ` ${colors[room.status]}`;
-
-              if (this.myPosition) {
-                const iAmInThisRoom = room.usersList.includes(myId);
-                if (iAmInThisRoom) {
-                  handleClickEvent = () => {
-                    Socket.leftRoom(myId);
-                  };
-                  additionalClasses += ' boardsPage-room__iAmIn';
-                }
-                if (room.id === myId && room.status === 1) {
-                  handleClickEvent = () => {
-                    Socket.startingGame(room.id);
-                  };
-                  additionalClasses += ' boardsPage-room__ready';
-                } else if (!iAmInThisRoom) {
-                  handleClickEvent = () => (console.warn('Please wait.'));
-                  additionalClasses += ' boardsPage-room__hide';
-                }
-              } else if (room.status === 1) {
-                handleClickEvent = () => (console.warn('Please wait.'));
-                additionalClasses += ' boardsPage-room__hide';
-              } else if (room.status === 2) {
-                handleClickEvent = () => {
-                  Socket.joinToRoom({ roomId: room.id, userId: myId });
-                };
-                additionalClasses += ' boardsPage-room__started';
-              }
+              const { additionalClasses, handleClickEvent } = getEventAndAdditionalClass(room, myId, myPosition);
 
               return (
                 <Room
