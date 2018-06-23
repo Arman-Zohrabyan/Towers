@@ -39,6 +39,20 @@ $window-width: 280px;
         &__open {
             padding: $launch-width / 10;
         }
+        &__budget {
+            background-color: #D84315;
+            color: white;
+            width: 24px;
+            display: inline-block;
+            height: 24px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 24px;
+            border-radius: 50%;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+        }
         &:active {
             .my-chat_launcher__close,
             .my-chat_launcher__open {

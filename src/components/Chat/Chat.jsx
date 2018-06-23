@@ -3,7 +3,7 @@
  */
 
 
-import React from 'react';
+import React, { Fragment } from 'react';
 
 
 import './Chat.scss';
@@ -15,8 +15,9 @@ class Chat extends React.Component {
     super(props);
 
     this.state = {
-      chatIsOpened: true,
-      formIsActive: true
+      chatIsOpened: false,
+      formIsActive: false,
+      budget: 5
     };
   }
   
@@ -27,20 +28,19 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { chatIsOpened, formIsActive } = this.state;
+    const { chatIsOpened, formIsActive, budget } = this.state;
     const activeClass = formIsActive ? 'active' : '';
-    let launcherIcon;
-
-    if(chatIsOpened) {
-      launcherIcon = <img className='my-chat_launcher__close' src='/images/chat/close-icon.png' />;
-    } else {
-      launcherIcon = <img className='my-chat_launcher__open' src='/images/chat/chat-icon.svg' />;
-    }
 
     return (
       <div className='my-chat'>
         <div className='my-chat_launcher' onClick={this.toggleShowChat}>
-          {launcherIcon}
+          {chatIsOpened ?
+            <img className='my-chat_launcher__close' src='/images/chat/close-icon.png' /> :
+            <Fragment>
+              {budget && <span className='my-chat_launcher__budget'>{budget}</span>}
+              <img className='my-chat_launcher__open' src='/images/chat/chat-icon.svg' />
+            </Fragment>
+          }
         </div>
 
 
