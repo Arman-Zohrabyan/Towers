@@ -4,27 +4,24 @@
 
 
 import React from 'react';
-import { Launcher } from 'react-chat-window'
 
-console.log(Launcher);
 
 import './Chat.scss';
 
+
+
 class Chat extends React.Component {
-
-  handleNewUserMessage = (newMessage) => {
-    console.log(`New message incomig! ${newMessage}`);
-    // Now send the message throught the backend API
-    renderCustomComponent(message);
-  }
-
   render() {
-
     return (
-      <div>
+
+      <div className="my-Chat">
+        <div className='my-Chat_launcher'>
+          <img className='my-Chat_launcher__open' src='/images/chat/chat-icon.svg' />
+          <img className='my-Chat_launcher__close' src='/images/chat/close-icon.png' />
+        </div>
       </div>
     );
   }
-};
+}
 
 export default Chat;

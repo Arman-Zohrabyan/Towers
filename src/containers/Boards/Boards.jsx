@@ -17,8 +17,6 @@ import Socket from '../../sockets';
 const colors = ['yellow', 'green', 'red'];
 
 
-
-
 class Boards extends Component {
   constructor(props) {
     super(props);
@@ -100,11 +98,11 @@ class Boards extends Component {
     return {
       additionalClasses,
       handleClickEvent
-    }
+    };
   }
 
   createRoom = () => {
-    const { myId,myNickname } = this.state;
+    const { myId, myNickname } = this.state;
     Socket.createRoom({ id: myId, nickname: myNickname });
   }
 

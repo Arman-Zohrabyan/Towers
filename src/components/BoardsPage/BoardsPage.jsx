@@ -12,7 +12,6 @@ import './BoardsPage.scss';
 
 
 class BoardsPage extends Component {
-
   render() {
     const {
       myId,
@@ -36,8 +35,7 @@ class BoardsPage extends Component {
             {
               iAmAlreadyCreatedTheRoom || myPosition ?
                 <span className='boardsPage-container__header__info'>You are already in the room.</span> :
-                <div className='boardsPage-button' onClick={createRoom}
-                >
+                <div className='boardsPage-button' onClick={createRoom}>
                   <p className='boardsPage-button__btnText'>CREATE NEW GAME</p>
                   <div className='boardsPage-button__btnTwo'>
                     <p className='boardsPage-button__btnText2'>
