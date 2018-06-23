@@ -163,17 +163,53 @@ $window-width: 280px;
                 }
             }
         }
+
+        &_messages {
+            height: 80%;
+            overflow-y: scroll;
+            background-color: #fff;
+            background-size: 100%;
+            padding: 10px 0;
+            &__message {
+                display: flex;
+                width: 265px;
+                margin: auto;
+                padding-bottom: 15px;
+                &__received {
+                    display: flex;
+                    width: 100%;
+                    position: relative;
+                    .my-chat_window_messages__message__text {
+                        color: #263238;
+                        background-color: #f4f7f9;
+                    }
+                }
+                &__sent {
+                    display: flex;
+                    width: 100%;
+                    position: relative;
+                    justify-content: flex-end;
+                    .my-chat_window_messages__message__text {
+                        color: #fff;
+                        background-color: #4e8cff;
+                        word-wrap: break-word;
+                    }
+                }
+                &__text {
+                    font-weight: 300;
+                    max-width: 80%;
+                    padding: 13px 10px 7px 12px;
+                    font-size: 12px;
+                    border-radius: 6px;
+                    line-height: 1.4;
+                }
+                &__sender {
+                    font-size: 11px;
+                    position: absolute;
+                    padding: 1px 10px;
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }
-
-
-
-.sc-message-list {
-    height: 80%;
-    overflow-y: auto;
-    background-color: #fff;
-    background-size: 100%;
-    padding: 40px 0;
-}
-
-
