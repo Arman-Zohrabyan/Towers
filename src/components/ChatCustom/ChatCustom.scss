@@ -211,6 +211,7 @@ $window-width: 280px;
                     }
                 }
                 &__text {
+                    word-break: break-all;;
                     font-weight: 300;
                     max-width: 80%;
                     padding: 13px 10px 7px 12px;

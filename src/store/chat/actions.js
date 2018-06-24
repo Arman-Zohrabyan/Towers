@@ -7,3 +7,8 @@ export const formBlurFocus = (activateForm) => ({
   type: 'CHAT_FORM_BLUR_FOCUS'
 });
 
+
+export const newMessageReceived = (messageData) => ({
+  messageData,
+  type: 'CHAT_NEW_MESSAGE'
+});

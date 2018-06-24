@@ -45,7 +45,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
 
-        <Chat />
+        <Chat myData={User.data} />
       </Fragment>
     );
   }

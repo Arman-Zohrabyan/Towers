@@ -11,11 +11,16 @@ import './ChatCustom.scss';
 class Chat extends React.Component {
   render() {
     const {
+      messageValue,
+      handleOnChange,
+      handleOnSubmit,
       chatIsOpened,
       formIsActive,
       budget,
+      messages,
       toggleShowChat,
-      formBlurFocus
+      formBlurFocus,
+      isMyMessage
     } = this.props;
     const activeClass = formIsActive ? 'active' : '';
 
@@ -31,7 +36,6 @@ class Chat extends React.Component {
           }
         </div>
 
-
         { chatIsOpened &&
           <div className='my-chat_window'>
             <div className='my-chat_window_header'>
@@ -42,27 +46,33 @@ class Chat extends React.Component {
               </div>
             </div>
             <div className='my-chat_window_messages'>
-              <div className='my-chat_window_messages__message'>
-                <div className='my-chat_window_messages__message__sent'>
-                  <div className='my-chat_window_messages__message__sender'>You</div>
-                  <div className='my-chat_window_messages__message__text'>Why don't they have salsa on the table?
-                  </div>
-                </div>
-              </div>
-              <div className='my-chat_window_messages__message'>
-                <div className='my-chat_window_messages__message__received'>
-                  <div className='my-chat_window_messages__message__sender'>Valodik</div>
-                  <div className='my-chat_window_messages__message__text'>What do you need salsa for?
-                  </div>
-                </div>
-              </div>
+              {
+                messages.map(messageData => {
+                  const { senderId, sender, message, id } = messageData;
+                  const isMy = isMyMessage(senderId)
+                  const senderClass = isMy ? 'sent' : 'received';
+                  const senderValue = isMy ? 'You' : sender;
+
+                  return (
+                    <div key={id} className='my-chat_window_messages__message'>
+                      <div className={`my-chat_window_messages__message__${senderClass}`}>
+                        <div className='my-chat_window_messages__message__sender'>{senderValue}</div>
+                        <div className='my-chat_window_messages__message__text'>{message}</div>
+                      </div>
+                    </div>
+                  );
+                })
+              }
             </div>
-            <form className={`my-chat_window_form ${activeClass}`}>
+            <form className={`my-chat_window_form ${activeClass}`} onSubmit={handleOnSubmit}>
               <input
                 placeholder='Write a message...'
                 className='my-chat_window_form__text'
+                name='message'
+                value={messageValue}
                 onFocus={() => {formBlurFocus(true)}}
                 onBlur={() => {formBlurFocus(false)}}
+                onChange={handleOnChange}
               />
               <div className='my-chat_window_form__buttons'>
                 <div className='my-chat_window_form__button send-button'>

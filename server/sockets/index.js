@@ -4,6 +4,7 @@
 
 /* eslint-disable */
 const Board = require('./board.js');
+const ObjectId = require('mongoose').mongo.ObjectId;
 // const Game = require('./game.js');
 
 
@@ -24,6 +25,17 @@ const storeUserId = (io, socket) => (userId) => {
 
 const socketApi = (io) => (socket) => {
   socket.on('storeUserId', storeUserId(io, socket));
+
+
+
+
+  socket.on('newMessage', (messageData) => {
+    messageData.id = ObjectId();
+    io.sockets.emit('newMessage', messageData);
+  });
+
+
+
 
 
   socket.on('socketJoinBoards', function() {
@@ -51,7 +63,6 @@ const socketApi = (io) => (socket) => {
   socket.on('socketLeaveRoom', function(roomId) {
     socket.leave(roomId);
   });
-
   socket.on('event', function(roomId) {
     io.sockets.in(roomId).emit('event', 'HelloWorld');
   });
