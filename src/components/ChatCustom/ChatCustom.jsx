@@ -45,7 +45,7 @@ class Chat extends React.Component {
                 <img src='/images/chat/close-icon.png' />
               </div>
             </div>
-            <div className='my-chat_window_messages'>
+            <div className='my-chat_window_messages' id='chat-content'>
               {
                 messages.map(messageData => {
                   const { senderId, sender, message, id } = messageData;

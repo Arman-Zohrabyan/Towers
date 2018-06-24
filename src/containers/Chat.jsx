@@ -8,6 +8,15 @@ import { connect } from 'react-redux';
 import Socket from '../sockets';
 import ChatCustom from '../components/ChatCustom/ChatCustom.jsx';
 import * as ChatActions from '../store/chat/actions';
+  
+function scrollToTop() {
+  setTimeout( function() {
+    const chatContent = document.getElementById('chat-content');
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }, 100);
+}
+
+
 
 
 class Chat extends React.Component {
@@ -45,6 +54,7 @@ class Chat extends React.Component {
         senderId: myData.id
       };
       Socket.sentMessage(messageData);
+      scrollToTop();
       this.setState({message: ''});
     }
   }
@@ -91,6 +101,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     toggleChat: () => {
+      scrollToTop();
       dispatch(ChatActions.toggleChat);
     },
     formBlurFocus: (activateForm) => {
