@@ -35,6 +35,7 @@ class Chat extends React.Component {
     this.mounted = true;
     Socket.getMessage(messageData => {
       if (this.mounted) {
+        scrollToTop();
         this.props.newMessage(messageData);
       }
     })
@@ -56,7 +57,6 @@ class Chat extends React.Component {
         senderId: myData.id
       };
       Socket.sentMessage(messageData);
-      scrollToTop();
       this.setState({message: ''});
     }
   }
