@@ -4,40 +4,28 @@
 
 
 import React, { Fragment } from 'react';
-
-
-import './Chat.scss';
+import './ChatCustom.scss';
 
 
 
 class Chat extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      chatIsOpened: false,
-      formIsActive: false,
-      budget: 5
-    };
-  }
-  
-  toggleShowChat = () => {
-    this.setState({
-      chatIsOpened: !this.state.chatIsOpened
-    });
-  }
-
   render() {
-    const { chatIsOpened, formIsActive, budget } = this.state;
+    const {
+      chatIsOpened,
+      formIsActive,
+      budget,
+      toggleShowChat,
+      formBlurFocus
+    } = this.props;
     const activeClass = formIsActive ? 'active' : '';
 
     return (
       <div className='my-chat'>
-        <div className='my-chat_launcher' onClick={this.toggleShowChat}>
+        <div className='my-chat_launcher' onClick={toggleShowChat}>
           {chatIsOpened ?
             <img className='my-chat_launcher__close' src='/images/chat/close-icon.png' /> :
             <Fragment>
-              {budget && <span className='my-chat_launcher__budget'>{budget}</span>}
+              {budget ? <span className='my-chat_launcher__budget'>{budget}</span> : ''}
               <img className='my-chat_launcher__open' src='/images/chat/chat-icon.svg' />
             </Fragment>
           }
@@ -49,7 +37,7 @@ class Chat extends React.Component {
             <div className='my-chat_window_header'>
               <img className='my-chat_window_header__image' src='https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png' />
               <div className='my-chat_window_header__title'>Welcome ^^</div>
-              <div className='my-chat_window_header__close-button' onClick={this.toggleShowChat}>
+              <div className='my-chat_window_header__close-button' onClick={toggleShowChat}>
                 <img src='/images/chat/close-icon.png' />
               </div>
             </div>
@@ -70,7 +58,12 @@ class Chat extends React.Component {
               </div>
             </div>
             <form className={`my-chat_window_form ${activeClass}`}>
-              <input placeholder='Write a message...' className='my-chat_window_form__text' />
+              <input
+                placeholder='Write a message...'
+                className='my-chat_window_form__text'
+                onFocus={() => {formBlurFocus(true)}}
+                onBlur={() => {formBlurFocus(false)}}
+              />
               <div className='my-chat_window_form__buttons'>
                 <div className='my-chat_window_form__button send-button'>
                   <button className='send-button_icon-wrapper'>

@@ -10,7 +10,7 @@ import toggleScreen from '../utility/toggleScreen';
 import User from '../modules/User';
 import Socket from '../sockets';
 import Loading from './Loading.jsx';
-import Chat from './Chat/Chat.jsx';
+import Chat from '../containers/Chat.jsx';
 
 
 class Layout extends React.Component {

@@ -12,7 +12,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import * as reducers from './reducers';
+import * as reducers from './store/reducers';
 
 import './style.scss';
 import Layout from './components/Layout.jsx';

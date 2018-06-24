@@ -42,16 +42,17 @@ $window-width: 280px;
         &__budget {
             background-color: #D84315;
             color: white;
-            width: 24px;
+            width: 20px;
             display: inline-block;
-            height: 24px;
+            height: 20px;
             text-align: center;
             vertical-align: middle;
-            line-height: 24px;
+            line-height: 20px;
             border-radius: 50%;
             position: absolute;
-            right: -10px;
-            top: -10px;
+            right: -8px;
+            top: -8px;
+            font-size: 10px;
         }
         &:active {
             .my-chat_launcher__close,
