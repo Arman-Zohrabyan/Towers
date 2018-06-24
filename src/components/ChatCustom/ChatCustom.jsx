@@ -64,8 +64,9 @@ class Chat extends React.Component {
                 })
               }
             </div>
-            <form className={`my-chat_window_form ${activeClass}`} onSubmit={handleOnSubmit}>
+            <form className={`my-chat_window_form ${activeClass}`} autoComplete="off" onSubmit={handleOnSubmit}>
               <input
+                autoComplete="off"
                 placeholder='Write a message...'
                 className='my-chat_window_form__text'
                 name='message'

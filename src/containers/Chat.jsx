@@ -45,6 +45,7 @@ class Chat extends React.Component {
         senderId: myData.id
       };
       Socket.sentMessage(messageData);
+      this.setState({message: ''});
     }
   }
 
