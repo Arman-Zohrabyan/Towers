@@ -12,7 +12,9 @@ import * as ChatActions from '../store/chat/actions';
 function scrollToTop() {
   setTimeout( function() {
     const chatContent = document.getElementById('chat-content');
-    chatContent.scrollTop = chatContent.scrollHeight;
+    if(chatContent) {
+      chatContent.scrollTop = chatContent.scrollHeight;
+    }
   }, 100);
 }
 
@@ -101,8 +103,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     toggleChat: () => {
-      scrollToTop();
       dispatch(ChatActions.toggleChat);
+      scrollToTop();
     },
     formBlurFocus: (activateForm) => {
       dispatch(ChatActions.formBlurFocus(activateForm));
