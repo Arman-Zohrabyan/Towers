@@ -1,5 +1,5 @@
 const initialState = {
-  budget: 7,
+  budget: 0,
   isOpened: false,
   formIsActive: false,
   maximumMessages: 20,
