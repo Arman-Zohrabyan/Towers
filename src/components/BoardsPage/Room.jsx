@@ -36,7 +36,6 @@ class Room extends Component {
   }
 }
 
-
 Room.propTypes = {
   /**
    * Room data

@@ -6,5 +6,5 @@
 import chat from './chat/reducer.js';
 
 export {
-    chat
+  chat
 };

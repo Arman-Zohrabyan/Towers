@@ -10,7 +10,6 @@ const initialState = {
 export default function reduce(state = initialState, action = {}) {
   let _state;
   switch (action.type) {
-
     case 'CHAT_TOGGLE': {
       _state = { ...state };
       if (_state.isOpened) {
@@ -30,10 +29,10 @@ export default function reduce(state = initialState, action = {}) {
       _state = { ...state };
       const messages = _state.messages;
       _state.messages.push(action.messageData);
-      if(!_state.isOpened) {
-        _state.budget += 1; 
+      if (!_state.isOpened) {
+        _state.budget += 1;
       }
-      if(_state.messages.length > _state.maximumMessages) {
+      if (_state.messages.length > _state.maximumMessages) {
         _state.messages.shift();
       }
       return _state;

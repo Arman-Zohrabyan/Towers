@@ -71,6 +71,34 @@ class BoardsPage extends Component {
 
 BoardsPage.propTypes = {
   /**
+   * Current user id
+   */
+  myId: PropTypes.string,
+  /**
+   * Current user nickname
+   */
+  myNickname: PropTypes.string,
+  /**
+   * Current user created room or not
+   */
+  iAmAlreadyCreatedTheRoom: PropTypes.boolean,
+  /**
+   * Current user position
+   */
+  myPosition: PropTypes.string,
+  /**
+   * Rooms list
+   */
+  rooms: PropTypes.object,
+  /**
+   * Function gets event and additional class for any rooms
+   */
+  getEventAndAdditionalClass: PropTypes.func,
+  /**
+   * Room creator function
+   */
+  createRoom: PropTypes.func,
+  /**
    * Application route history
    */
   history: PropTypes.object

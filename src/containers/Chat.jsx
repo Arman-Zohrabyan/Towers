@@ -8,17 +8,15 @@ import { connect } from 'react-redux';
 import Socket from '../sockets';
 import ChatCustom from '../components/ChatCustom/ChatCustom.jsx';
 import * as ChatActions from '../store/chat/actions';
-  
+
 function scrollToTop() {
-  setTimeout( function() {
+  setTimeout(() => {
     const chatContent = document.getElementById('chat-content');
-    if(chatContent) {
+    if (chatContent) {
       chatContent.scrollTop = chatContent.scrollHeight;
     }
   }, 100);
 }
-
-
 
 
 class Chat extends React.Component {
@@ -27,7 +25,7 @@ class Chat extends React.Component {
 
     this.state = {
       message: ''
-    }
+    };
   }
 
   componentDidMount() {
@@ -38,7 +36,7 @@ class Chat extends React.Component {
         scrollToTop();
         this.props.newMessage(messageData);
       }
-    })
+    });
   }
 
   componentWillUnmount() {
@@ -49,7 +47,7 @@ class Chat extends React.Component {
     e.preventDefault();
     let { message } = this.state;
     message = message.trim();
-    if(message.length) {
+    if (message.length) {
       const { myData } = this.props;
       const messageData = {
         message,
@@ -57,7 +55,7 @@ class Chat extends React.Component {
         senderId: myData.id
       };
       Socket.sentMessage(messageData);
-      this.setState({message: ''});
+      this.setState({ message: '' });
     }
   }
 
@@ -90,8 +88,6 @@ class Chat extends React.Component {
     );
   }
 }
-
-
 
 
 function mapStateToProps(state) {

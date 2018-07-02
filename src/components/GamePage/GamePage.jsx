@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import User from '../../modules/User';
 import Socket from '../../sockets';
 
@@ -41,27 +41,30 @@ class GamePage extends Component {
     Socket.leaveSocketRoom();
   }
 
-    back = () => {
-      this.props.history.push('/boards');
-    }
+  handleBack = () => {
+    this.props.history.push('/boards');
+  }
 
-    render() {
-      console.log(this.state.message);
-      return (
-        <div onClick={this.back}>
-                GmaePage
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div onClick={this.handleBack}>
+              GmaePage
+      </div>
+    );
+  }
 }
 
 
-// GamePage.propTypes = {
-/**
-   * browser history
+GamePage.propTypes = {
+  /**
+   * Props from router path
    */
-// history: PropTypes.object
-// };
+  match: PropTypes.object,
+  /**
+   * Browser history
+   */
+  history: PropTypes.object
+};
 
 
 export default GamePage;

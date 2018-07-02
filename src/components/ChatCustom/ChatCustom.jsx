@@ -4,10 +4,10 @@
 
 
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import './ChatCustom.scss';
 
-
-
+/* eslint-disable */
 class Chat extends React.Component {
   render() {
     const {
@@ -49,7 +49,7 @@ class Chat extends React.Component {
               {
                 messages.map(messageData => {
                   const { senderId, sender, message, id } = messageData;
-                  const isMy = isMyMessage(senderId)
+                  const isMy = isMyMessage(senderId);
                   const senderClass = isMy ? 'sent' : 'received';
                   const senderValue = isMy ? 'You' : sender;
 
@@ -64,15 +64,19 @@ class Chat extends React.Component {
                 })
               }
             </div>
-            <form className={`my-chat_window_form ${activeClass}`} autoComplete="off" onSubmit={handleOnSubmit}>
+            <form className={`my-chat_window_form ${activeClass}`} autoComplete='off' onSubmit={handleOnSubmit}>
               <input
-                autoComplete="off"
+                autoComplete='off'
                 placeholder='Write a message...'
                 className='my-chat_window_form__text'
                 name='message'
                 value={messageValue}
-                onFocus={() => {formBlurFocus(true)}}
-                onBlur={() => {formBlurFocus(false)}}
+                onFocus={() => {
+                  formBlurFocus(true);
+                }}
+                onBlur={() => {
+                  formBlurFocus(false);
+                }}
                 onChange={handleOnChange}
               />
               <div className='my-chat_window_form__buttons'>
@@ -96,5 +100,49 @@ class Chat extends React.Component {
     );
   }
 }
+/* eslint-enable */
+
+Chat.propTypes = {
+  /**
+   * Message text
+   */
+  messageValue: PropTypes.string,
+  /**
+   * Changes massage text
+   */
+  handleOnChange: PropTypes.func,
+  /**
+   * Submits message
+   */
+  handleOnSubmit: PropTypes.func,
+  /**
+   * Is opened chat or not
+   */
+  chatIsOpened: PropTypes.boolean,
+  /**
+   * Is active message input or not
+   */
+  formIsActive: PropTypes.boolean,
+  /**
+   * Chat budget value
+   */
+  budget: PropTypes.number,
+  /**
+   * Chat messages list
+   */
+  messages: PropTypes.object,
+  /**
+   * Hides/Shows chat
+   */
+  toggleShowChat: PropTypes.func,
+  /**
+   * Blur/Focus on message input event
+   */
+  formBlurFocus: PropTypes.func,
+  /**
+   * Message writed by current user or not
+   */
+  isMyMessage: PropTypes.boolean
+};
 
 export default Chat;
