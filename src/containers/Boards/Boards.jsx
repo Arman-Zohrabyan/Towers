@@ -56,12 +56,6 @@ class Boards extends Component {
     Socket.leaveBoards();
   }
 
-  goToGameRoom = (roomId) => {
-    setTimeout(() => {
-      this.props.history.push(`/room/${roomId}`);
-    }, 800);
-  }
-
   getEventAndAdditionalClass(room, myId, myPosition) {
     let handleClickEvent = () => {
       Socket.joinToRoom({ roomId: room.id, userId: myId });
@@ -99,6 +93,12 @@ class Boards extends Component {
       additionalClasses,
       handleClickEvent
     };
+  }
+
+  goToGameRoom = (roomId) => {
+    setTimeout(() => {
+      this.props.history.push(`/room/${roomId}`);
+    }, 800);
   }
 
   createRoom = () => {

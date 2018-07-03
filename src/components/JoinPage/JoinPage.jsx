@@ -60,12 +60,32 @@ class JoinPage extends Component {
 }
 
 
-// JoinPage.propTypes = {
-/**
-   * browser history
+JoinPage.propTypes = {
+  /**
+   * Dangerouse class
    */
-// history: PropTypes.object
-// };
+  dangerousClass: PropTypes.string,
+  /**
+   * Change input value handle function
+   */
+  handleChange: PropTypes.func,
+  /**
+   * Send nickname handle function
+   */
+  handleClick: PropTypes.func,
+  /**
+   * Input value
+   */
+  inputVal: PropTypes.string,
+  /**
+   * Input value validator
+   */
+  isCorrect: PropTypes.boolean,
+  /**
+   * Browser history
+   */
+  history: PropTypes.object
+};
 
 
 export default JoinPage;
