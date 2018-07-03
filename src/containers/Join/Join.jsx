@@ -24,7 +24,7 @@ class Join extends Component {
   /**
    * Nickname send function
    */
-  handleOnClick = (e) => {
+  onClickHandle = (e) => {
     e.preventDefault();
     const { history } = this.props;
     const { isNicknameCorrect, nickname } = this.state;
@@ -44,7 +44,7 @@ class Join extends Component {
   /**
    * Input value change function.
    */
-  handleOnChange = (e) => {
+  onChangeHandle = (e) => {
     const { name, value } = e.target;
 
     const isNicknameCorrect = (value.trim().length > 2);
@@ -63,13 +63,21 @@ class Join extends Component {
     return (
       <JoinPage
         dangerousClass={dangerousClass}
-        handleChange={this.handleOnChange}
-        handleClick={this.handleOnClick}
+        handleChange={this.onChangeHandle}
+        handleClick={this.onClickHandle}
         inputVal={nickname}
         isCorrect={isNicknameCorrect}
       />
     );
   }
 }
+
+Join.propTypes = {
+  /**
+   * Application route history
+   */
+  history: PropTypes.object
+};
+
 
 export default Join;

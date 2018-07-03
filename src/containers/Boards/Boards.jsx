@@ -126,7 +126,6 @@ class Boards extends Component {
   }
 }
 
-
 Boards.propTypes = {
   /**
    * Application route history
