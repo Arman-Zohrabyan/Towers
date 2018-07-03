@@ -5,7 +5,7 @@
 import React from 'react';
 
 
-export default class Loading extends React.Component {
+class Loading extends React.Component {
   render() {
     return (
       <div className='preloader'>
@@ -21,3 +21,6 @@ export default class Loading extends React.Component {
     );
   }
 }
+
+
+export default  Loading;

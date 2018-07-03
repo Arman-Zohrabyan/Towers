@@ -111,18 +111,26 @@ body {
 }
 
 
-
+.exitButton,
 .toggleScreenButton {
   width: 30px;
   height: 30px;
-  background-image: url('/images/fullScreen.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   cursor: pointer;
   position: fixed;
-  right: 10px;
   z-index: 100;
   top: 10px;
+}
+
+.toggleScreenButton {
+  background-image: url('/images/fullScreen.png');
+  right: 10px;
+}
+
+.exitButton {
+  background-image: url('/images/exit.png');
+  left: 10px;
 }
 
 
