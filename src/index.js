@@ -8,7 +8,8 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { AuthRoute, UnAuthRoute } from './modules/RouteTypes.jsx'
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -34,9 +35,9 @@ render(
       <Layout>
         <Switch>
           <Redirect exact from='/' to='/join' />
-          <Route exact path='/join' component={Join}/>
-          <Route exact path='/boards' component={BoardsPage}/>
-          <Route exact path='/room/:socketId' component={GamePage}/>
+          <UnAuthRoute exact path='/join' component={Join}/>
+          <AuthRoute exact path='/boards' component={BoardsPage}/>
+          <AuthRoute exact path='/room/:socketId' component={GamePage}/>
         </Switch>
       </Layout>
     </BrowserRouter>
