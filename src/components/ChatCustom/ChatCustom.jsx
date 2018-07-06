@@ -17,6 +17,7 @@ class Chat extends React.Component {
       chatIsOpened,
       formIsActive,
       budget,
+      online,
       messages,
       toggleShowChat,
       formBlurFocus,
@@ -27,6 +28,7 @@ class Chat extends React.Component {
     return (
       <div className='my-chat'>
         <div className='my-chat_launcher' onClick={toggleShowChat}>
+          {online ? <span className='my-chat_launcher__online'>{online}</span> : ''}
           {chatIsOpened ?
             <img className='my-chat_launcher__close' src='/images/chat/close-icon.png' /> :
             <Fragment>
@@ -103,6 +105,10 @@ class Chat extends React.Component {
 /* eslint-enable */
 
 Chat.propTypes = {
+  /**
+   * Count of online users
+   */
+  online: PropTypes.number,
   /**
    * Message text
    */

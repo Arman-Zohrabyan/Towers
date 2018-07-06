@@ -54,6 +54,21 @@ $window-width: 280px;
             top: -8px;
             font-size: 10px;
         }
+        &__online {
+            background-color: #689F38;
+            color: white;
+            width: 20px;
+            display: inline-block;
+            height: 20px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            bottom: -8px;
+            font-size: 10px;
+        }
         &:active {
             .my-chat_launcher__close,
             .my-chat_launcher__open {
@@ -187,7 +202,7 @@ $window-width: 280px;
             padding: 10px 0;
             &__message {
                 display: flex;
-                width: 265px;
+                width: 255px;
                 margin: auto;
                 padding-bottom: 15px;
                 &__received {

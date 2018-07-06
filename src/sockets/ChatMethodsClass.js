@@ -10,6 +10,10 @@ class ChatMethods {
   static sentMessage(messageData) {
     this.socket.emit('newMessage', messageData);
   }
+
+  static usersOnline(cb) {
+    this.socket.on('usersOnline', countOfUsers => cb(countOfUsers));
+  }
 }
 
 

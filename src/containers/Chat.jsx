@@ -31,10 +31,17 @@ class Chat extends React.Component {
   componentDidMount() {
     // TODO:   this.mounted   so bad solution!
     this.mounted = true;
+
     Socket.getMessage(messageData => {
       if (this.mounted) {
         scrollToTop();
         this.props.newMessage(messageData);
+      }
+    });
+
+    Socket.usersOnline(countOfUsers => {
+      if (this.mounted) {
+        this.props.setOnlineUsersCount(countOfUsers);
       }
     });
   }
@@ -78,6 +85,7 @@ class Chat extends React.Component {
         chatIsOpened={chat.isOpened}
         formIsActive={chat.formIsActive}
         budget={chat.budget}
+        online={chat.online}
         toggleShowChat={toggleChat}
         formBlurFocus={formBlurFocus}
         messages={chat.messages}
@@ -107,6 +115,9 @@ function mapDispatchToProps(dispatch) {
     },
     newMessage: (messageData) => {
       dispatch(ChatActions.newMessageReceived(messageData));
+    },
+    setOnlineUsersCount: (count) => {
+      dispatch(ChatActions.setOnlineUsersCount(count));
     }
   };
 }

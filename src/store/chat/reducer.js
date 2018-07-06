@@ -1,4 +1,5 @@
 const initialState = {
+  online: 0,
   budget: 0,
   isOpened: false,
   formIsActive: false,
@@ -22,6 +23,12 @@ export default function reduce(state = initialState, action = {}) {
     case 'CHAT_FORM_BLUR_FOCUS': {
       _state = { ...state };
       _state.formIsActive = action.activateForm;
+      return _state;
+    }
+
+    case 'CHAT_ONLINE_USERS': {
+      _state = { ...state };
+      _state.online = action.online;
       return _state;
     }
 

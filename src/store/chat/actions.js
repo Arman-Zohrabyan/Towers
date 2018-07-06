@@ -1,3 +1,8 @@
+export const setOnlineUsersCount = (online) => ({
+  online,
+  type: 'CHAT_ONLINE_USERS'
+});
+
 export const toggleChat = {
   type: 'CHAT_TOGGLE'
 };

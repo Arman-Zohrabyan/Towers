@@ -16,10 +16,12 @@ const disconnect = (io, socket) => () => {
 
   Board(io, socket).removeUser(userId);
   delete socket_user[socket.id];
+  io.sockets.emit('usersOnline', Object.keys(socket_user).length);
 };
 
 const storeUserId = (io, socket) => (userId) => {
   socket_user[socket.id] = userId;
+  io.sockets.emit('usersOnline', Object.keys(socket_user).length);
 };
 
 
