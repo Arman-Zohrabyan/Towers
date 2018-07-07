@@ -28,11 +28,11 @@ class Chat extends React.Component {
     return (
       <div className='my-chat'>
         <div className='my-chat_launcher' onClick={toggleShowChat}>
-          {online ? <span className='my-chat_launcher__online'>{online}</span> : ''}
+          {online ? <span className='my-chat_launcher__online' title={`Players online: ${online}`}>{online}</span> : ''}
           {chatIsOpened ?
             <img className='my-chat_launcher__close' src='/images/chat/close-icon.png' /> :
             <Fragment>
-              {budget ? <span className='my-chat_launcher__budget'>{budget}</span> : ''}
+              {budget ? <span className='my-chat_launcher__budget' title={`New mesages: ${budget}`}>{budget}</span> : ''}
               <img className='my-chat_launcher__open' src='/images/chat/chat-icon.svg' />
             </Fragment>
           }
