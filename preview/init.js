@@ -31,7 +31,7 @@ const initRooms = (container) => {
   // room 7
   container.createRoom('test7', 'Player 7');
   container.userJoin('test7', 'Andr');
-}
+};
 
 
 module.exports = {

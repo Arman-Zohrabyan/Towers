@@ -13,11 +13,11 @@ class RoomsContainer {
   }
 
   /**
-     * Adds new room.
-     *
-     * @param  {string}   creatorId     Creator's id.
-     * @param  {string}   creatorName   Creator's name.
-     */
+   * Adds new room.
+   *
+   * @param  {string}   creatorId     Creator's id.
+   * @param  {string}   creatorName   Creator's name.
+   */
   createRoom(creatorId, creatorName) {
     // Don't created a room if it's already created.
     if (this.rooms[creatorId]) return;
@@ -26,11 +26,11 @@ class RoomsContainer {
   }
 
   /**
-     * Adds new user in a specific room.
-     *
-     * @param  {string}   roomId        Id of the room.
-     * @param  {string}   userId        New user's id.
-     */
+   * Adds new user in a specific room.
+   *
+   * @param  {string}   roomId        Id of the room.
+   * @param  {string}   userId        New user's id.
+   */
   userJoin(roomId, userId) {
     // Doesn't do anything if the user is already in the room.
     if (this.getUserPosition(userId)) return;
@@ -39,20 +39,20 @@ class RoomsContainer {
   }
 
   /**
-     * Starts game in the room.
-     *
-     * @param  {string}   roomId        Id of the room.
-     */
+   * Starts game in the room.
+   *
+   * @param  {string}   roomId        Id of the room.
+   */
   startGame(roomId) {
     this.rooms[roomId].setStatusStarted();
   }
 
   /**
-     * If user is in one of the rooms, returns user position and room id.
-     *
-     * @param  {string}   userId   User's id.
-     * @return {boolean|object}    Position or false.
-     */
+   * If user is in one of the rooms, returns user position and room id.
+   *
+   * @param  {string}   userId   User's id.
+   * @return {boolean|object}    Position or false.
+   */
   getUserPosition(userId) {
     let result = false;
     Object.keys(this.rooms).forEach(roomId => {
