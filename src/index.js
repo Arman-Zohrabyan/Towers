@@ -9,7 +9,7 @@ import { render } from 'react-dom';
 
 
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import { AuthRoute, UnAuthRoute } from './modules/RouteTypes.jsx'
+import { AuthRoute, UnAuthRoute } from './modules/RouteTypes.jsx';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';

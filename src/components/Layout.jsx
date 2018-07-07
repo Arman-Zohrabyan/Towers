@@ -37,23 +37,23 @@ class Layout extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { pathname } = nextProps.history.location;
-    
-    if(!prevState.socketIsRunning && pathname !== '/join') {
+
+    if (!prevState.socketIsRunning && pathname !== '/join') {
       Socket.init(User.data.id);
 
       return {
         ...prevState,
         socketIsRunning: true
-      }
+      };
     } else if (prevState.socketIsRunning && pathname === '/join') {
       Socket.end();
 
       return {
         ...prevState,
         socketIsRunning: false
-      }
+      };
     }
-    
+
     return null;
   }
 
@@ -76,7 +76,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
 
-        {User.isJoined && 
+        {User.isJoined &&
           <Fragment>
             <Chat myData={User.data} />
             <div className='exitButton' onClick={this.onExitHandle} />

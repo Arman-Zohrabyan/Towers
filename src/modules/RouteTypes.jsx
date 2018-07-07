@@ -2,14 +2,14 @@
  * Created By: Arman Zohrabyan
  */
 
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import User from "./User";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import User from './User';
 
 /**
- * Only joined users can join to this routes 
+ * Only joined users can join to this routes
  */
-const AuthRoute = ({ component: Component, ...rest }) => (  
+const AuthRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     User.isJoined ? (
       <Component {...props}/>
@@ -17,15 +17,17 @@ const AuthRoute = ({ component: Component, ...rest }) => (
       <Redirect to={{
         pathname: '/join',
         state: { from: props.location }
-      }}/>
+      }}
+      />
     )
-  )}/>
+  )}
+  />
 );
 
 /**
- * Only unjoined users can join to this routes 
+ * Only unjoined users can join to this routes
  */
-const UnAuthRoute = ({ component: Component, ...rest }) => (  
+const UnAuthRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     !User.isJoined ? (
       <Component {...props}/>
@@ -33,11 +35,12 @@ const UnAuthRoute = ({ component: Component, ...rest }) => (
       <Redirect to={{
         pathname: '/boards',
         state: { from: props.location }
-      }}/>
+      }}
+      />
     )
-  )}/>
+  )}
+  />
 );
-
 
 
 export {

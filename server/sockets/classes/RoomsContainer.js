@@ -66,10 +66,10 @@ class RoomsContainer {
   }
 
   /**
-     * If user is in one of the rooms, returns user position and room id.
-     *
-     * @param  {string}   userId   User's id.
-     */
+   * If user is in one of the rooms, returns user position and room id.
+   *
+   * @param  {string}   userId   User's id.
+   */
   fullRemoveUser(userId) {
     if (this.rooms[userId]) {
       delete this.rooms[userId];
