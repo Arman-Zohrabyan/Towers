@@ -81,11 +81,11 @@ BoardsPage.propTypes = {
   /**
    * Current user created room or not
    */
-  iAmAlreadyCreatedTheRoom: PropTypes.boolean,
+  iAmAlreadyCreatedTheRoom: PropTypes.any,
   /**
    * Current user position
    */
-  myPosition: PropTypes.string,
+  myPosition: PropTypes.any,
   /**
    * Rooms list
    */

@@ -10,8 +10,12 @@ class User {
     localStorage.setItem('token', token);
   }
 
+  static get token() {
+    return localStorage.getItem('token');
+  }
+
   static get isJoined() {
-    return localStorage.getItem('token') !== null;
+    return User.token !== null;
   }
 
   static get removeToken() {
@@ -19,7 +23,7 @@ class User {
   }
 
   static get data() {
-    const token = localStorage.getItem('token');
+    const { token } = User;
     if (token) {
       const user = jwt.decode(token);
       return user;

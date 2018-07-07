@@ -80,7 +80,7 @@ JoinPage.propTypes = {
   /**
    * Input value validator
    */
-  isCorrect: PropTypes.boolean
+  isCorrect: PropTypes.any
 };
 
 

@@ -7,7 +7,7 @@ import { Route, Redirect } from "react-router-dom";
 import User from "./User";
 
 /**
- * Only joined users can redirect to this routes 
+ * Only joined users can join to this routes 
  */
 const AuthRoute = ({ component: Component, ...rest }) => (  
   <Route {...rest} render={props => (
@@ -23,7 +23,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 );
 
 /**
- * Only unjoined users can redirect to this routes 
+ * Only unjoined users can join to this routes 
  */
 const UnAuthRoute = ({ component: Component, ...rest }) => (  
   <Route {...rest} render={props => (

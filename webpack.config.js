@@ -1,7 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
+// const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 
 module.exports = {
@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     // new CleanWebpackPlugin(['dist']),
     new CopyWebpackPlugin(['public']),
-    new LiveReloadPlugin({ appendScriptTag: true, delay: 2000 })
+    // new LiveReloadPlugin({ appendScriptTag: true, delay: 2000 })
     // new webpack.optimize.UglifyJsPlugin({
     //   compressor: {
     //     warnings: false

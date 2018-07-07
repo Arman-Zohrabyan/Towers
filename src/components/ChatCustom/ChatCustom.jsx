@@ -124,11 +124,11 @@ Chat.propTypes = {
   /**
    * Is opened chat or not
    */
-  chatIsOpened: PropTypes.boolean,
+  chatIsOpened: PropTypes.any,
   /**
    * Is active message input or not
    */
-  formIsActive: PropTypes.boolean,
+  formIsActive: PropTypes.any,
   /**
    * Chat budget value
    */
@@ -136,7 +136,7 @@ Chat.propTypes = {
   /**
    * Chat messages list
    */
-  messages: PropTypes.object,
+  messages: PropTypes.array,
   /**
    * Hides/Shows chat
    */
@@ -148,7 +148,7 @@ Chat.propTypes = {
   /**
    * Message writed by current user or not
    */
-  isMyMessage: PropTypes.boolean
+  isMyMessage: PropTypes.any
 };
 
 export default Chat;
