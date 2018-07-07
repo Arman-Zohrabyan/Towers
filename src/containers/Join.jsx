@@ -6,8 +6,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import User from '../../modules/User';
-import JoinPage from '../../components/JoinPage/JoinPage.jsx';
+import User from '../modules/User';
+import JoinPage from '../components/JoinPage/JoinPage.jsx';
 
 
 class Join extends Component {

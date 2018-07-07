@@ -8,11 +8,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import BoardsPage from '../../components/BoardsPage/BoardsPage.jsx';
+import BoardsPage from '../components/BoardsPage/BoardsPage.jsx';
 
-import User from '../../modules/User';
-import Helper from '../../../common/helper';
-import Socket from '../../sockets';
+import User from '../modules/User';
+import Helper from '../../common/helper';
+import Socket from '../sockets';
 
 const colors = ['yellow', 'green', 'red'];
 

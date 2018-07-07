@@ -17,8 +17,8 @@ import * as reducers from './store/reducers';
 
 import './style.scss';
 import Layout from './components/Layout.jsx';
-import Join from './containers/Join/Join.jsx';
-import BoardsPage from './containers/Boards/Boards.jsx';
+import Join from './containers/Join.jsx';
+import BoardsPage from './containers/Boards.jsx';
 import GamePage from './components/GamePage/GamePage.jsx';
 
 
