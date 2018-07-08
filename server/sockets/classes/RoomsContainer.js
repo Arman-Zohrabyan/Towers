@@ -66,7 +66,7 @@ class RoomsContainer {
   }
 
   /**
-   * If user is in one of the rooms, returns user position and room id.
+   * If user is in one of the rooms, removs user for the room.
    *
    * @param  {string}   userId   User's id.
    */

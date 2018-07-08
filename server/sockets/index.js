@@ -2,79 +2,32 @@
  * Created By: Arman Zohrabyan
  */
 
-/* eslint-disable */
 const Board = require('./board.js');
-const ObjectId = require('mongoose').mongo.ObjectId;
-// const Game = require('./game.js');
+const Chat = require('./chat.js');
+const User = require('./user.js');
+const Game = require('./game.js');
 
-
-const socket_user = {};
-
-const disconnect = (io, socket) => () => {
-  const socketId = socket.id;
-  const userId = socket_user[socketId];
-
-  Board(io, socket).removeUser(userId);
-  delete socket_user[socket.id];
-  io.sockets.emit('usersOnline', Object.keys(socket_user).length);
-};
-
-const storeUserId = (io, socket) => (userId) => {
-  socket_user[socket.id] = userId;
-  io.sockets.emit('usersOnline', Object.keys(socket_user).length);
-};
 
 
 const socketApi = (io) => (socket) => {
-  socket.on('storeUserId', storeUserId(io, socket));
-
-
-
-
-  socket.on('newMessage', (messageData) => {
-    messageData.id = ObjectId();
-    io.sockets.emit('newMessage', messageData);
-  });
-
-
-
-
-
-  socket.on('socketJoinBoards', function() {
-    socket.join('boardsRoom');
-  });
-  socket.on('socketLeftBoards', function() {
-    socket.leave('boardsRoom');
-  });
-
+  // chat
+  socket.on('newMessage', Chat(io, socket).newMessage);
+  // board
+  socket.on('socketJoinBoards', Board(io, socket).socketJoin);
+  socket.on('socketLeftBoards', Board(io, socket).socketLeave);
   socket.on('getRooms', Board(io, socket).getRooms);
   socket.on('createRoom', Board(io, socket).createRoom);
   socket.on('joinToRoom', Board(io, socket).joinToRoom);
   socket.on('leaveRoom', Board(io, socket).removeUser);
   socket.on('startStatus', Board(io, socket).startingGame);
-
-
-
-
-
-
-
-  socket.on('socketJoinRoom', function(roomId) {
-    socket.join(roomId);
-  });
-  socket.on('socketLeaveRoom', function(roomId) {
-    socket.leave(roomId);
-  });
-  socket.on('event', function(roomId) {
-    io.sockets.in(roomId).emit('event', 'HelloWorld');
-  });
-
-
-
-
-  socket.on('disconnect', disconnect(io, socket));
+  //game
+  socket.on('socketJoinRoom', Game(io, socket).socketJoin);
+  socket.on('socketLeaveRoom', Game(io, socket).socketLeave);
+  socket.on('event', Game(io, socket).event);
+  // initial
+  socket.on('storeUserId', User(io, socket).storeUserId);
+  socket.on('disconnect', User(io, socket).removeUser); // socket disconnect
 };
 
 
 module.exports = socketApi;
-/* eslint-enable */
