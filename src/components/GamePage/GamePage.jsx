@@ -20,11 +20,9 @@ class GamePage extends Component {
     this.state = {
       message: '',
       myId: data.id,
-
       screen: {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        ratio: window.devicePixelRatio || 1,
+        width: 0,
+        height: 0
       },
       context: null,
       currentGold: 100,
@@ -43,6 +41,7 @@ class GamePage extends Component {
         this.setState({ message });
       }
     });
+    this.handleResize();
     window.addEventListener('resize',  this.handleResize.bind(this, false));
   }
 
@@ -53,12 +52,11 @@ class GamePage extends Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  handleResize(value, e){
+  handleResize(){
     this.setState({
       screen : {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        ratio: window.devicePixelRatio || 1,
+        width: document.body.clientWidth,
+        height: document.body.clientHeight
       }
     });
   }
@@ -72,8 +70,9 @@ class GamePage extends Component {
       <div>
         <div className='exitButton' onClick={this.handleBack} />    
         <canvas ref="canvas"
-          width={this.state.screen.width * this.state.screen.ratio}
-          height={this.state.screen.height * this.state.screen.ratio}
+          width={this.state.screen.width}
+          height={640}
+          style={{'width': '100%', 'height': this.state.screen.height}}
         />
       </div>
     );
