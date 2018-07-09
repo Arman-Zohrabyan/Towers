@@ -1,6 +1,9 @@
 canvas {
     position: absolute;
-    background-image: url('/images/canvasBackground2.png'), url('/images/canvasBackground1.png');
+    background-image: url('/images/canvasBackground4.png'),
+                      url('/images/canvasBackground3.png'),
+                      url('/images/canvasBackground2.png'),
+                      url('/images/canvasBackground1.png');
     background-size: auto 100%;
     background-attachment: fixed;
 }
