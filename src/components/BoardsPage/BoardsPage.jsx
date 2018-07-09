@@ -20,11 +20,13 @@ class BoardsPage extends Component {
       myPosition,
       rooms,
       getEventAndAdditionalClass,
-      createRoom
+      createRoom,
+      onHandleExit
     } = this.props;
 
     return (
       <div className='boardsPage'>
+        <div className='exitButton' onClick={onHandleExit} />
         <div className='boardsPage-container'>
           <div className='boardsPage-container__header'>
             <span className='boardsPage-container__header__h1'>GAME BOARDS</span>

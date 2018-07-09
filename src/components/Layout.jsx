@@ -57,14 +57,6 @@ class Layout extends React.Component {
     return null;
   }
 
-  /**
-   * Handle exit function
-   */
-  onExitHandle = () => {
-    User.removeToken;
-    this.props.history.push('/join');
-  }
-
   render() {
     return (
       <Fragment>
@@ -76,12 +68,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
 
-        {User.isJoined &&
-          <Fragment>
-            <Chat myData={User.data} />
-            <div className='exitButton' onClick={this.onExitHandle} />
-          </Fragment>
-        }
+        { User.isJoined && <Chat myData={User.data} /> }
       </Fragment>
     );
   }

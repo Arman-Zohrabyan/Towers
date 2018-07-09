@@ -106,6 +106,14 @@ class Boards extends Component {
     Socket.createRoom({ id: myId, nickname: myNickname });
   }
 
+  /**
+   * Handle exit function
+   */
+  onExitHandle = () => {
+    User.removeToken;
+    this.props.history.push('/join');
+  }
+
   render() {
     const { myId, myNickname, rooms } = this.state;
     const iAmAlreadyCreatedTheRoom = Object.keys(rooms).includes(myId);
@@ -114,6 +122,7 @@ class Boards extends Component {
 
     return (
       <BoardsPage
+        onHandleExit={this.onExitHandle}
         myId={myId}
         myNickname={myNickname}
         iAmAlreadyCreatedTheRoom={iAmAlreadyCreatedTheRoom}
