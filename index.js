@@ -38,5 +38,5 @@ server.listen(port, (err) => {
 });
 
 
-const socketApi = require('./server/sockets');
-io.on('connection', socketApi(io));
+const socketsHandler = require('./server/sockets');
+io.on('connection', socketsHandler(io));
