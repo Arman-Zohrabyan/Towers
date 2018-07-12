@@ -17,7 +17,7 @@ module.exports = (io, socket) => {
       socket.leave(roomId);
     },
     /**
-     * 
+     *
      */
     event: (roomId) => {
       io.sockets.in(roomId).emit('event', 'HelloWorld');

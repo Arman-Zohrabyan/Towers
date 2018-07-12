@@ -52,7 +52,7 @@ class GamePage extends Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  handleResize(){
+  handleResize() {
     this.setState({
       screen : {
         width: document.body.clientWidth,
@@ -68,11 +68,11 @@ class GamePage extends Component {
   render() {
     return (
       <div>
-        <div className='exitButton' onClick={this.handleBack} />    
-        <canvas ref="canvas"
+        <div className='exitButton' onClick={this.handleBack} />
+        <canvas ref='canvas'
           width={this.state.screen.width}
           height={640}
-          style={{'width': '100%', 'height': this.state.screen.height}}
+          style={{ 'width': '100%', 'height': this.state.screen.height }}
         />
       </div>
     );

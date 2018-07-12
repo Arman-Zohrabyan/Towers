@@ -8,7 +8,6 @@ const User = require('./user.js');
 const Game = require('./game.js');
 
 
-
 const socketApi = (io) => (socket) => {
   // chat
   socket.on('newMessage', Chat(io, socket).newMessage);
@@ -20,7 +19,7 @@ const socketApi = (io) => (socket) => {
   socket.on('joinToRoom', Board(io, socket).joinToRoom);
   socket.on('leaveRoom', Board(io, socket).removeUser);
   socket.on('startStatus', Board(io, socket).startingGame);
-  //game
+  // game
   socket.on('socketJoinRoom', Game(io, socket).socketJoin);
   socket.on('socketLeaveRoom', Game(io, socket).socketLeave);
   socket.on('event', Game(io, socket).event);
