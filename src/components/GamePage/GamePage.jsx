@@ -62,10 +62,11 @@ class GamePage extends Component {
     // const keys = this.state.keys;
 
     context.save();
+    context.clearRect(0, 0, screen.width, screen.height);
 
     // console.log(screen.coefficient);
     context.beginPath();
-    context.arc( 1350*screen.coefficient, 800*screen.coefficient, 100*screen.coefficient, 0, 2 * Math.PI);
+    context.arc( 500, 300, 100, 0, 2 * Math.PI);
     context.fill();
     // context.stroke();
 
@@ -88,7 +89,7 @@ class GamePage extends Component {
       screen : {
         width: document.body.clientWidth,
         height: document.body.clientHeight,
-        coefficient: document.body.clientHeight/document.body.clientWidth
+        coefficient: 640/document.body.clientWidth
       }
     });
   }
@@ -105,10 +106,10 @@ class GamePage extends Component {
 
     return (
       <div className='canvas-container'>
-        <div className='exitButton' onClick={this.handleBack} />    
+        <div className='exitButton' onClick={this.handleBack} />
         <canvas ref="canvas"
-          width={screen.width}
-          height={screen.height}
+          width={640*screen.width/screen.height}
+          height={640}
           style={{'width': '100%', 'height': screen.height}}
         />
         <div className='canvas-container_mouse-coordinates'>
