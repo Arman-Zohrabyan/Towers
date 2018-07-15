@@ -83,7 +83,7 @@ class GamePage extends Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  handleResize(){
+  handleResize() {
     this.setState({
       screen : {
         width: document.body.clientWidth,

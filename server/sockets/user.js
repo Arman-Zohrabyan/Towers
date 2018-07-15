@@ -35,5 +35,5 @@ module.exports = (io, socket) => {
 
 
 function invert(obj) {
-  return Object.assign({}, ...Object.entries(obj).map(([a,b]) => ({ [b]: a })));
+  return Object.assign({}, ...Object.entries(obj).map(([a, b]) => ({ [b]: a })));
 }
