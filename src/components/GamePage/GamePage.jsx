@@ -88,8 +88,7 @@ class GamePage extends Component {
     this.setState({
       screen : {
         width: document.body.clientWidth,
-        height: document.body.clientHeight,
-        coefficient: 640/document.body.clientWidth
+        height: document.body.clientHeight
       }
     });
   }
@@ -108,7 +107,7 @@ class GamePage extends Component {
       <div className='canvas-container'>
         <div className='exitButton' onClick={this.handleBack} />
         <canvas ref="canvas"
-          width={640*screen.width/screen.height}
+          width={parseInt(640*screen.width/screen.height)}
           height={640}
           style={{'width': '100%', 'height': screen.height}}
         />
