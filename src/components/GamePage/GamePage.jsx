@@ -6,33 +6,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import initalState from './initalState';
 import './GamePage.scss';
-import User from '../../modules/User';
 import Socket from '../../sockets';
+import { keyDown, keyUp } from './events/keyEvents';
 
 
 class GamePage extends Component {
   constructor(props) {
     super(props);
 
-    const data = User.data;
-
-    this.state = {
-      message: '',
-      myId: data.id,
-      screen: {
-        width: 0,
-        height: 0,
-        coefficient: 0
-      },
-      mouseCoordinates: {
-        x: 0,
-        y: 0
-      },
-      context: null,
-      currentGold: 100,
-      inGame: false
-    };
+    this.state = initalState;
   }
 
   componentDidMount() {
@@ -50,6 +34,8 @@ class GamePage extends Component {
 
     this.handleResize();
     window.addEventListener('resize',  this.handleResize.bind(this, false));
+    window.addEventListener('keydown',  (e) => keyDown.call(this, e));
+    window.addEventListener('keyup',  (e) => keyUp.call(this, e));
 
 
     const context = this.refs.canvas.getContext('2d');
@@ -58,21 +44,21 @@ class GamePage extends Component {
   }
 
   update = () => {
-    const { context, screen } = this.state;
+    const { context, canvas, camera } = this.state;
     // const keys = this.state.keys;
 
     context.save();
-    context.clearRect(0, 0, screen.width, screen.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // console.log(screen.coefficient);
+    // console.log(canvas.coefficient);
     context.beginPath();
-    context.arc( 500, 300, 100, 0, 2 * Math.PI);
+    context.arc( 500 - camera, 300, 100, 0, 2 * Math.PI);
     context.fill();
     // context.stroke();
 
 
     context.restore();
-
+// this.setState({ camera: camera+1 });
     // Next frame
     requestAnimationFrame(() => {this.update()});
   }
@@ -85,10 +71,15 @@ class GamePage extends Component {
   }
 
   handleResize() {
+    const { clientWidth, clientHeight } = document.body;
     this.setState({
       screen : {
-        width: document.body.clientWidth,
-        height: document.body.clientHeight
+        width: clientWidth,
+        height: clientHeight
+      },
+      canvas: {
+        width: parseInt(640*clientWidth/clientHeight),
+        height: 640
       }
     });
   }
@@ -100,20 +91,22 @@ class GamePage extends Component {
   render() {
     const {
       screen,
-      mouseCoordinates
+      canvas,
+      camera,
+      cameraSpeed
     } = this.state;
 
     return (
       <div className='canvas-container'>
         <div className='exitButton' onClick={this.handleBack} />
         <canvas ref="canvas"
-          width={parseInt(640*screen.width/screen.height)}
-          height={640}
+          width={canvas.width}
+          height={canvas.height}
           style={{'width': '100%', 'height': screen.height}}
         />
         <div className='canvas-container_mouse-coordinates'>
-          <div>x: {mouseCoordinates.x}</div>
-          <div>y: {mouseCoordinates.y}</div>
+          <div>x: {camera}</div>
+          <div>y: {cameraSpeed}</div>
         </div>
       </div>
     );
