@@ -14,4 +14,18 @@
         top: 100px;
         color: black;
     }
+    &__triangle-right,
+    &__triangle-left {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 8%;
+        top: 0;
+        bottom: 0;
+    }
+    &__triangle-left {
+        left: 0;
+    }
+    &__triangle-right {
+        right: 0;
+    }
 }

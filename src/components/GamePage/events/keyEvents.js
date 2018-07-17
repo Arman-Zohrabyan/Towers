@@ -1,27 +1,22 @@
+import { cameraPosition } from '../helpers/camera.js';
+
 const KEYS = {
   '37': 'LEFT',
   '39': 'RIGHT'
-}
+};
 
 const keyDown = function(e = window.event) {
-  const { camera, cameraSpeed } = this.state;
   const { keyCode } = e;
   let _cameraObj = {};
 
   switch (KEYS[keyCode]) {
     case 'LEFT':
-      if(cameraSpeed < 10) {
-        _cameraObj.cameraSpeed = Math.ceil(cameraSpeed+1);
-      }
-      _cameraObj.camera = camera + cameraSpeed;
+      _cameraObj = cameraPosition(this.state, 'LEFT');
       this.setState(_cameraObj);
       break;
 
     case 'RIGHT':
-      if(cameraSpeed < 10) {
-        _cameraObj.cameraSpeed = Math.ceil(cameraSpeed+1);
-      }
-      _cameraObj.camera = camera - cameraSpeed;
+      _cameraObj = cameraPosition(this.state, 'RIGHT');
       this.setState(_cameraObj);
       break;
 

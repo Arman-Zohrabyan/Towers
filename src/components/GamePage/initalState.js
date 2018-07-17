@@ -18,6 +18,6 @@ export default {
   cameraSpeed: 1,
   cameraValuesInterval: {
     min: 0,
-    max: 1000
+    max: 0
   }
 };

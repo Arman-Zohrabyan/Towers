@@ -10,6 +10,8 @@ import initalState from './initalState';
 import './GamePage.scss';
 import Socket from '../../sockets';
 import { keyDown, keyUp } from './events/keyEvents';
+import { handleResize } from './events/resizeEvent';
+import { onEnterCameraTriangle, onLeaveCameraTriangle } from './helpers/camera.js';
 
 
 class GamePage extends Component {
@@ -32,10 +34,10 @@ class GamePage extends Component {
     });
 
 
-    this.handleResize();
-    window.addEventListener('resize',  this.handleResize.bind(this, false));
-    window.addEventListener('keydown',  (e) => keyDown.call(this, e));
-    window.addEventListener('keyup',  (e) => keyUp.call(this, e));
+    handleResize.call(this);
+    window.addEventListener('resize',  handleResize.bind(this));
+    window.addEventListener('keydown',  keyDown.bind(this));
+    window.addEventListener('keyup',  keyUp.bind(this));
 
 
     const context = this.refs.canvas.getContext('2d');
@@ -52,7 +54,7 @@ class GamePage extends Component {
 
     // console.log(canvas.coefficient);
     context.beginPath();
-    context.arc( 500 - camera, 300, 100, 0, 2 * Math.PI);
+    context.arc( 100 - camera, 300, 100, 0, 2 * Math.PI);
     context.fill();
     // context.stroke();
 
@@ -67,21 +69,10 @@ class GamePage extends Component {
     this.mounted = false;
     Socket.leftRoom(this.state.myId);
     Socket.leaveSocketRoom();
-    window.removeEventListener('resize', this.handleResize);
-  }
 
-  handleResize() {
-    const { clientWidth, clientHeight } = document.body;
-    this.setState({
-      screen : {
-        width: clientWidth,
-        height: clientHeight
-      },
-      canvas: {
-        width: parseInt(640*clientWidth/clientHeight),
-        height: 640
-      }
-    });
+    window.removeEventListener('resize', handleResize);
+    window.addEventListener('keydown',  keyDown);
+    window.addEventListener('keyup',  keyUp);
   }
 
   handleBack = () => {
@@ -104,9 +95,21 @@ class GamePage extends Component {
           height={canvas.height}
           style={{'width': '100%', 'height': screen.height}}
         />
+        <div className='canvas-container__triangle-left'
+          onMouseEnter={onEnterCameraTriangle.bind(this, 'LEFT')}
+          onMouseLeave={onLeaveCameraTriangle.bind(this)}
+          onTouchStart={onEnterCameraTriangle.bind(this, 'LEFT')}
+          onTouchEnd={onLeaveCameraTriangle.bind(this)}
+        />
+        <div className='canvas-container__triangle-right'
+          onMouseEnter={onEnterCameraTriangle.bind(this, 'RIGHT')}
+          onMouseLeave={onLeaveCameraTriangle.bind(this)}
+          onTouchStart={onEnterCameraTriangle.bind(this, 'RIGHT')}
+          onTouchEnd={onLeaveCameraTriangle.bind(this)}
+        />
         <div className='canvas-container_mouse-coordinates'>
-          <div>x: {camera}</div>
-          <div>y: {cameraSpeed}</div>
+          <div>camera: {camera}</div>
+          <div>speed: {cameraSpeed}</div>
         </div>
       </div>
     );
